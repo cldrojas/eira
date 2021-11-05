@@ -1,64 +1,72 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
-
-const mode = process.env.NODE_ENV || 'development';
-const prod = mode === 'production';
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-	entry: {
-		'build/bundle': ['./src/main.js']
-	},
-	resolve: {
-		alias: {
-			svelte: path.dirname(require.resolve('svelte/package.json'))
-		},
-		extensions: ['.mjs', '.js', '.svelte'],
-		mainFields: ['svelte', 'browser', 'module', 'main']
-	},
-	output: {
-		path: path.join(__dirname, '/public'),
-		filename: '[name].js',
-		chunkFilename: '[name].[id].js'
-	},
-	module: {
-		rules: [
-			{
-				test: /\.svelte$/,
-				use: {
-					loader: 'svelte-loader',
-					options: {
-						compilerOptions: {
-							dev: !prod
-						},
-						emitCss: prod,
-						hotReload: !prod
-					}
-				}
-			},
-			{
-				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader'
-				]
-			},
-			{
-				// required to prevent errors from Svelte on Webpack 5+
-				test: /node_modules\/svelte\/.*\.mjs$/,
-				resolve: {
-					fullySpecified: false
-				}
-			}
-		]
-	},
-	mode,
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: '[name].css'
-		})
-	],
-	devtool: prod ? false : 'source-map',
-	devServer: {
-		hot: true
-	}
+    // This says to webpack that we are in development mode and write the code in webpack file in different way
+    mode: "development",
+    //Our index file
+    entry: "./src/index.js",
+    //Where we put the production code
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "index.js",
+    },
+    module: {
+        rules: [
+            //Allows use of modern javascript
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/, //don't test node_modules folder
+                use: {
+                    loader: "babel-loader",
+                },
+            },
+            //Allows use of svelte
+            {
+                test: /\.svelte$/,
+                use: {
+                    loader: "svelte-loader",
+                    
+                },
+            },
+            //Allows use of CSS
+            {
+                test: /\.(css|scss)$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
+            },
+            //Allows use of images
+            {
+                test: /\.(jpg|jpeg|png|svg)$/,
+                use: "file-loader",
+            },
+        ],
+    },
+    //this is what enables users to leave off the extension when importing
+    resolve: {
+        extensions: [".mjs", ".js", ".svelte"],
+    },
+    plugins: [
+        
+        //Allows to create an index.html in our build folder
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "public/index.html"),
+        }),
+        new CopyPlugin({
+            patterns: [{
+                from: "./public/img",
+                to: "img",
+            }, ],
+        }),
+        //This gets all our css and put in a unique file
+        new MiniCssExtractPlugin(),
+        //take our environment variable in .env file
+        //And it does a text replace in the resulting bundle for any instances of process.env.
+    ],
+    ////Config for webpack-dev-server module
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+    },
 };
