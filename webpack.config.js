@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     // This says to webpack that we are in development mode and write the code in webpack file in different way
     mode: "development",
-    //Our index file
-    entry: "./src/index.js",
+    //Our index file 
+    entry: "./src/main.js",
     //Where we put the production code
     output: {
         path: path.resolve(__dirname, "dist"),
