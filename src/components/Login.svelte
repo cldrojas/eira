@@ -12,7 +12,7 @@
 
 <section class="Login">
   <div class="Login-content">
-    <div class="modal" class:active={loading}><img src="./favicon.png" alt="logo"></div>
+    <div class="modal" class:active={loading}><img src="./img/favicon.png" alt="logo"></div>
     <form class="Login-form" on:submit|preventDefault={login}>
       <input bind:value={email} type="text" placeholder="Login" />
       <input bind:value={password} type="password" placeholder="Password" />

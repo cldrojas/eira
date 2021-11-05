@@ -1,6 +1,17 @@
 {
-  "name": "svelte-app",
+  "name": "eira",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cldrojas/eira.git"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development --open"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "babel-loader": "^8.2.2",
@@ -15,11 +26,5 @@
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^4.4.0"
   },
-  "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack serve --mode development --open"
-  },
-  "dependencies": {
-    "crypto-js": "^4.1.1"
-  }
+  "license": "MIT"
 }
