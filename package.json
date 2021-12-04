@@ -10,7 +10,8 @@
     "dev": "webpack serve --mode development --open"
   },
   "dependencies": {
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "eslint": "^8.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

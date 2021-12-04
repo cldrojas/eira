@@ -1,30 +1,41 @@
 <script>
-    import { logIn } from '../utils/auth.js';
- 
-    let email, password;
-    let loading = false;
+  import { signIn } from "../utils/auth.js";
+  import { saveToken } from "../utils/store.js";
 
-    const login = () => {
-        loading = true;
-        logIn(email, password)
-    };
+  let email, password;
+  let loading = false;
+  let remember = false;
+
+  const login = async () => {
+    loading = true;
+    const token = await signIn(email, password);
+    console.log("token", token);
+    //recuperaste toda la data del usuario
+    //asigna la data del usuario a la sesion
+
+    saveToken(token, remember);
+  };
 </script>
 
 <section class="Login">
   <div class="Login-content">
-    <div class="modal" class:active={loading}><img src="./img/favicon.png" alt="logo"></div>
+    <div class="modal" class:active={loading}>
+      <img src="./img/favicon.png" alt="logo" />
+    </div>
     <form class="Login-form" on:submit|preventDefault={login}>
       <input bind:value={email} type="text" placeholder="Login" />
       <input bind:value={password} type="password" placeholder="Password" />
       <div class="forgot">
-        <label for="remember"><input type="checkbox" /> Remember me</label>
+        <label for="remember"
+          ><input bind:checked={remember} type="checkbox" /> Remember me</label
+        >
         <a href="#/">Forgot password?</a>
       </div>
       <button class="submit-btn" type="submit">Login</button>
     </form>
   </div>
 </section>
-  
+
 <style>
   .Login {
     height: 100vh;
@@ -109,7 +120,7 @@
   .active {
     display: flex;
   }
-  .modal img{
+  .modal img {
     animation: rotate 3.5s infinite;
   }
 
