@@ -1,37 +1,37 @@
 <script>
+  import { stringify } from "querystring";
+
   import { signIn } from "../utils/auth.js";
-  import { saveToken } from "../utils/store.js";
+  import { saveToken, saveUser } from "../utils/store.js";
+
+  import SubmitButton from "./SubmitButton.svelte";
 
   let email, password;
-  let loading = false;
   let remember = false;
 
   const login = async () => {
     loading = true;
-    const token = await signIn(email, password);
-    console.log("token", token);
-    //recuperaste toda la data del usuario
-    //asigna la data del usuario a la sesion
-
-    saveToken(token, remember);
+    const data = await signIn(email, password);
+    saveUser(data.user);
+    saveToken(data.accessToken, remember);
   };
 </script>
 
 <section class="Login">
   <div class="Login-content">
-    <div class="modal" class:active={loading}>
-      <img src="./img/favicon.png" alt="logo" />
-    </div>
+    <h1 class="title">Iniciar Sesión</h1>
+    <h4 class="subtitle">Comienza a registrar tus emociones</h4>
     <form class="Login-form" on:submit|preventDefault={login}>
-      <input bind:value={email} type="text" placeholder="Login" />
-      <input bind:value={password} type="password" placeholder="Password" />
+      <input bind:value={email} type="text" placeholder="Tu@correo.com" />
+      <input bind:value={password} type="password" placeholder="Contraseña" />
       <div class="forgot">
         <label for="remember"
-          ><input bind:checked={remember} type="checkbox" /> Remember me</label
+          ><input bind:checked={remember} type="checkbox" /> Recuerdame</label
         >
-        <a href="#/">Forgot password?</a>
+        <a href="#/">Olvidé mi contraseña</a>
       </div>
-      <button class="submit-btn" type="submit">Login</button>
+
+      <SubmitButton label="Comenzar" />
     </form>
   </div>
 </section>
@@ -39,40 +39,55 @@
 <style>
   .Login {
     height: 100vh;
+    display: grid;
+    place-items: center;
   }
   .Login-content {
-    padding: 0 30%;
-  }
-  .Login-form {
-    height: 30vh;
+    min-width: 300px;
+    min-height: 452px;
     display: flex;
     flex-direction: column;
-    justify-self: center;
-    justify-content: space-evenly;
+    gap: 32px;
+  }
+  .title {
+    font-size: 3rem;
+    font-weight: 400;
+    max-width: 150px;
+    margin: 0;
+    margin-left: 25%;
+  }
+  .subtitle {
+    height: min-content;
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+  }
+  .Login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
   .Login-form input {
     color: snow;
     padding-left: 18px;
-    height: 45px;
+    min-height: 45px;
+    outline: none;
+    border: none;
     background-color: #224957;
     border-radius: 10px;
   }
   input::placeholder {
     color: snow;
   }
-  .Login-form button {
-    height: 45px;
-    border: none;
-    color: snow;
-    background-color: #20df7f;
-    border-radius: 10px;
-  }
   .forgot {
     display: flex;
-    align-items: center;
+    position: relative;
     justify-content: space-between;
+    gap: 12px;
+    height: 17px;
   }
   .forgot label {
+    height: 100%;
     display: flex;
     align-items: center;
   }
@@ -81,9 +96,10 @@
     color: #20df7f;
   }
   .forgot input {
+    cursor: pointer;
     position: relative;
-    height: 18px;
-    margin-right: 7px;
+    min-height: 17px;
+    margin-right: 8px;
   }
   .forgot input::after {
     content: "";
@@ -104,32 +120,5 @@
     background-size: cover;
     background-position-y: center;
     background-color: green;
-  }
-  .modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-  }
-  .active {
-    display: flex;
-  }
-  .modal img {
-    animation: rotate 3.5s infinite;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
   }
 </style>
