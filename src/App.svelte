@@ -1,13 +1,13 @@
 <script>
   import { isLoged, signOut, user } from "./utils/store.js";
 
-  import Login from "./components/Login.svelte";
-  import NewEntry from "./components/NewEntry.svelte";
+  import Login from "./user/pages/Login.svelte";
+  import NewEntry from "./entry/pages/NewEntry.svelte";
 </script>
 
 <main>
   <div class="waves">
-    <img class="front" src="waves/front-wave.svg" alt="frontal wave" />
+    <img class="front" src="./waves" alt="frontal wave" />
     <img class="back" src="waves/back-wave.svg" alt="background wave" />
   </div>
   {#if $isLoged}

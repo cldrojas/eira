@@ -1,16 +1,13 @@
 <script>
-  import { stringify } from "querystring";
+  import { signIn } from "../../utils/auth.js";
+  import { saveToken, saveUser } from "../../utils/store.js";
 
-  import { signIn } from "../utils/auth.js";
-  import { saveToken, saveUser } from "../utils/store.js";
-
-  import SubmitButton from "./SubmitButton.svelte";
+  import SubmitButton from "../../components/SubmitButton.svelte";
 
   let email, password;
   let remember = false;
 
   const login = async () => {
-    loading = true;
     const data = await signIn(email, password);
     saveUser(data.user);
     saveToken(data.accessToken, remember);
@@ -26,7 +23,7 @@
       <input bind:value={password} type="password" placeholder="Contraseña" />
       <div class="forgot">
         <label for="remember"
-          ><input bind:checked={remember} type="checkbox" /> Recuerdame</label
+          ><input id="remember" bind:checked={remember} type="checkbox" /> Recuerdame</label
         >
         <a href="#/">Olvidé mi contraseña</a>
       </div>
@@ -90,6 +87,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
   .forgot a {
     text-decoration: none;
