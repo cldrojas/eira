@@ -7,8 +7,8 @@
 
 <main>
   <div class="waves">
-    <img class="front" src="./waves" alt="frontal wave" />
-    <img class="back" src="waves/back-wave.svg" alt="background wave" />
+    <img class="front" src="./waves/front-wave.svg" alt="frontal wave" />
+    <img class="back" src="./waves/back-wave.svg" alt="background wave" />
   </div>
   {#if $isLoged}
     <button on:click={signOut}>Salir</button>
