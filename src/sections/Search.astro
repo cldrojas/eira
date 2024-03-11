@@ -3,6 +3,14 @@ import Cog from '@/icons/cog.astro'
 import Counter from '@/components/Counter.astro'
 ---
 <section class="bg-background py-2 rounded-xl w-full flex flex-col">
+  <div class="flex items-end justify-around mb-4">
+    <Counter text="Entradas" number="188" />
+    <div class=`flex flex-col items-center mt-4`>
+      <h2 class="text-2xl font-bold text-primary">Eira</h2>
+      <p class="text-secondary">Bitácora Médica</p>
+    </div>
+    <Counter text="Este mes" number="24" />
+  </div>
   <div class="flex items-center px-4 p-6 relative justify-center">
     <input
       class="w-full h-8 rounded-md focus:outline-none pl-2 "
@@ -10,13 +18,5 @@ import Counter from '@/components/Counter.astro'
       placeholder="Buscar entradas..."
     />
     <Cog class="text-secondary absolute end-6" size="20px" />
-  </div>
-  <div class="flex items-end justify-around mb-4">
-    <Counter text="Entradas" number="188" />
-    <div class=`flex flex-col items-center mb-4`>
-      <h2 class="text-2xl font-bold text-primary">Eira</h2>
-      <p class="text-secondary">Bitácora Médica</p>
-    </div>
-    <Counter text="Este mes" number="24" />
   </div>
 </sectionbg-backgr>
