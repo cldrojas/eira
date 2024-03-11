@@ -1,10 +1,12 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Search from '@/sections/Search.astro';
+import Entries from '@/sections/Entries.astro';
 ---
 
 <Layout title="Eira - Bitácora Médica">
-
-	<main>
-		<h1>Eira - Bitácora Médica</h1>
+	<main class="flex flex-col content-center w-full max-w-7xl">
+		<Search />
+		<Entries />
 	</main>
 </Layout>

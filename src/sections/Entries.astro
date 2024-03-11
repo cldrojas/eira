@@ -1,0 +1,30 @@
+---
+import Entry from "@/components/Entry.astro";
+
+interface Entry {
+  type: string;
+  slug: string;
+  text: string;
+  date: string;
+}
+
+const entries: Entry[] = [
+  {
+    type: "note",
+    slug: "Sensación extraña",
+    text: "Sensación extraña en el oido izquierdo",
+    date: "18-05",
+  },
+ {
+    type: "appointment",
+    slug: "Cita con el otorrino",
+    text: "Cita con el otorrino para revisar la sensación extraña en el oido izquierdo",
+    date: "02-12",
+  },
+];
+---
+
+<section class="flex flex-col">
+  <h2 class="text-xl m-2 text-title">Últimas Entradas</h2>
+  {entries.map((entry : Entry) => <Entry {...entry} />)}
+</section>

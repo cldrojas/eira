@@ -1,0 +1,31 @@
+---
+import NoteIcon from "@/icons/note.astro";
+import AppointmentIcon from "@/icons/schedule.astro";
+import ThreedotsIcon from "@/icons/threedots.astro";
+
+const types = {
+  note: "note",
+  appointment: "appointment",
+};
+
+const { type, slug, text, date } = Astro.props;
+let open = true;
+
+const handleOpen = () => {
+  open = !open;
+};
+---
+
+<article class="flex justify-center w-full px-2">
+  <div class="flex w-full bg-primary items-center justify-between px-4 py-2 rounded-lg m-2">
+    <div class="flex items-center gap-1">
+      <div class="flex flex-col items-center">
+        {type === types.note && <NoteIcon size="24px" />}
+        {type === types.appointment && <AppointmentIcon size="24px" />}
+        <span class="text-xs">{date}</span>
+      </div>
+      <h2 class="text-xl font-bold ms-1">{slug}</h2>
+    </div>
+    <ThreedotsIcon size="24px" class="hover:pointer" />
+  </div>
+</article>
