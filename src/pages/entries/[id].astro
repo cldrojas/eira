@@ -1,0 +1,18 @@
+---
+import { ENTRIES } from "@/data/entries";
+import Layout from "@/layouts/Layout.astro";
+const { id } = Astro.params;
+const entry = ENTRIES.find((entry) => entry.id === id);
+const { date, slug, type, text } = entry;
+---
+
+<Layout title={slug ?? "Sin Título"}>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">{slug}</h1>
+        <p class="text-secondary">{text}</p>
+      </div>
+    </div>
+  </div>
+</Layout>

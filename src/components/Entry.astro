@@ -8,24 +8,26 @@ const types = {
   appointment: "appointment",
 };
 
-const { type, slug, text, date } = Astro.props;
-let open = true;
-
-const handleOpen = () => {
-  open = !open;
-};
+const { id, type, slug, text, date } = Astro.props;
 ---
 
-<article class="flex justify-center w-full px-2">
-  <div class="flex w-full bg-primary items-center justify-between px-4 py-2 rounded-lg m-2">
-    <div class="flex items-center gap-1">
-      <div class="flex flex-col items-center">
-        {type === types.note && <NoteIcon size="24px" />}
-        {type === types.appointment && <AppointmentIcon size="24px" />}
-        <span class="text-xs">{date}</span>
-      </div>
-      <h2 class="text-xl font-bold ms-1">{slug}</h2>
-    </div>
-    <ThreedotsIcon size="24px" class="hover:pointer" />
-  </div>
-</article>
+<a href=`/entries/${id}` class="w-full">
+  <article
+    class="flex flex-col justify-center w-full px-2 hover:scale-105 transition-transform hover:opacity-100 "
+  >
+    <header class="flex w-full bg-primary items-center justify-between px-4 py-2 rounded-lg m-2">
+      <container class="flex items-center gap-1">
+        <info class="flex flex-col items-center">
+          {type === types.note && <NoteIcon size="24px" />}
+          {type === types.appointment && <AppointmentIcon size="24px" />}
+          <span class="text-xs">{date}</span>
+        </info>
+        <h2 class="text-xl font-bold ms-1">{slug}</h2>
+      </container>
+      <ThreedotsIcon size="24px" class="hover:cursor-pointer" id={id} />
+    </header>
+    <content class="bg-background opacity-0 transition-all p-8 hidden border-2 border-blue-600">
+      <p class="text-white">{text}</p>
+    </content>
+  </article>
+</a>

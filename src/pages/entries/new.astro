@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import FormInput from "@/components/FormInput.astro";
+// type, slug, text, date, author, title, description, image, tags
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+
+    console.log(`DEBUG:data:`, data);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<Layout title="Nueva entrada">
+  <main class="flex justify-center">
+    <form method="POST" class="flex flex-col bg-background rounded-lg p-4 m-4">
+      <h1 class="text-primary">Nueva Entrada</h1>
+      <FormInput label="Título" name="title" />
+      <FormInput label="Detalles" name="text" />
+      <FormInput label="Fecha" name="date" type="date" />
+      <FormInput label="Autor" name="author" />
+      <FormInput label="Descripción" name="description" />
+      <FormInput label="Imagen" name="image" />
+      <FormInput label="Tags" name="tags" />
+      <button type="submit" class="bg-primary text-background rounded-lg p-2 m-2"> Enviar </button>
+    </form>
+  </main>
+</Layout>

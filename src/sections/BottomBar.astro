@@ -5,27 +5,11 @@ import PlusIcon from "@/icons/pluscircle.astro";
 <footer class="absolute bottom-0 flex w-screen">
   <nav class="bg-title w-full flex justify-center">
     <ul class="flex gap-8 md:justify-center md:max-w-2xl h-12 items-center">
-      <button name="home">Home</button>
-      <button class="bg-background rounded-full p-1 mb-9 hover:bg-green"
-        ><PlusIcon size="64px" class="text-secondary" /></button
+      <a href="/">Home</a>
+      <a href="/entries/new" class="bg-background rounded-full p-1 mb-9 hover:bg-green"
+        ><PlusIcon size="64px" class="text-secondary" /></a
       >
-      <button>Profile</button>
+      <a href="/profile">Profile</a>
     </ul>
   </nav>
 </footer>
-
-<script>
-  const buttons = document.querySelectorAll("button");
-  const [home, plus, profile] = buttons;
-
-  plus?.addEventListener("click", () => {
-    // navigate to the new entry page
-    window.location.href = "/create";
-  });
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      alert("TODO: Implement navigation")
-    });
-  });
-</script>

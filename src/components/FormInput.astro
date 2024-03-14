@@ -1,0 +1,5 @@
+---
+  const {label, name} = Astro.props
+---
+<label class="text-formLabel" for="title">{label}: </label>
+<input class="outline-none" type="text" id={name} name={name} />
