@@ -1,8 +1,11 @@
 ---
-import { ENTRIES } from "@/data/entries";
+import { ENTRIES, getEntry } from "@/data/entries";
 import Layout from "@/layouts/Layout.astro";
+
 const { id } = Astro.params;
-const entry = ENTRIES.find((entry) => entry.id === id);
+if (!id) return; // maybe an empty skeleton
+const entry = getEntry(id);
+if (!entry) return; // maybe a 404 page
 const { date, slug, type, text } = entry;
 ---
 
