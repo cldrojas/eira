@@ -2,7 +2,7 @@
 import NoteIcon from "@/icons/note.astro";
 import AppointmentIcon from "@/icons/schedule.astro";
 
-const { id, type, slug, text, date, createdAt, place } = Astro.props as Entry;
+const { id, type, slug, text, date, createdAt, place } = Astro.props;
 ---
 
 <a href=`/entries/${id}` class="w-full">
