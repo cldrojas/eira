@@ -2,11 +2,6 @@
 import NoteIcon from "@/icons/note.astro";
 import AppointmentIcon from "@/icons/schedule.astro";
 
-const types = {
-  note: "note",
-  appointment: "appointment",
-};
-
 const { id, type, slug, text, date, createdAt, place } = Astro.props as Entry;
 ---
 
@@ -18,8 +13,8 @@ const { id, type, slug, text, date, createdAt, place } = Astro.props as Entry;
   >
     <div class="flex items-center gap-1">
       <info class="flex flex-col items-center">
-        {type === types.note && <NoteIcon class="size-6"/>}
-        {type === types.appointment && <AppointmentIcon class="size-6"/>}
+        {type === entryTypes.note && <NoteIcon class="size-6"/>}
+        {type === entryTypes.appointment && <AppointmentIcon class="size-6"/>}
         <span class="text-xs">{createdAt}</span>
       </info>
       <h2 class="text-xl font-bold ms-1">{slug}</h2>
@@ -33,8 +28,8 @@ const { id, type, slug, text, date, createdAt, place } = Astro.props as Entry;
       transition-all duration-200"
   >
     <p class="text-white">
-      {type === types.note && text}
-      {type === types.appointment && `${date} en ${place}`}
+      {type === entryTypes.note && text}
+      {type === entryTypes.appointment && `${date} en ${place}`}
     </p>
   </description>
 </a>
