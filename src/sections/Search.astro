@@ -1,15 +1,24 @@
 ---
 import Cog from '@/icons/cog.astro'
 import Counter from '@/components/Counter.astro'
+
+import {ENTRIES} from '@/data/entries'
+const totalEntries = ENTRIES.length
+const thisMonth = ENTRIES.filter(entry => {
+  const created = new Date(entry.createdAt)
+  const today = new Date()
+  console.log(`DEBUG:created.getMonth():`, created.getMonth())
+  return created.getMonth() === today.getMonth()
+}).length
 ---
-<section class="bg-background py-2 rounded-xl w-full flex flex-col">
+<section class="bg-background py-2 rounded-b-xl w-full flex flex-col">
   <div class="flex items-end justify-around mb-4">
-    <Counter text="Entradas" number="188" />
+    <Counter text="Entradas" number={totalEntries} />
     <div class=`flex flex-col items-center mt-4`>
       <h2 class="text-2xl font-bold text-primary">Eira</h2>
       <p class="text-secondary">Bitácora Médica</p>
     </div>
-    <Counter text="Este mes" number="24" />
+    <Counter text="Este mes" number={thisMonth} />
   </div>
   <div class="flex items-center px-4 p-6 relative justify-center">
     <input

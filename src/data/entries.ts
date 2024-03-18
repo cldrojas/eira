@@ -1,51 +1,52 @@
-interface Entry {
-  id: string;
-  type: string;
-  slug: string;
-  text: string;
-  date: string;
-  author: string;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  link: string;
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export const ENTRIES: Entry[] = [
   {
     id: crypto.randomUUID(),
     type: "note",
-    slug: "Sensación extraña",
-    text: "Sensación extraña en el oido izquierdo",
-    date: "18-05",
-    author: "",
     title: "",
+    slug: "Medio bate",
+    text: "Me fumé la mitad de una sola carga del bate y me dio cualesquiera de sueño :c",
+    date: "Mayo 20, 2024 10:30",
+    place: "Hospital Regional de Arica, Dr. Juan Noé Crevani",
+    author: "",
     description: "",
     image: "",
     tags: [],
     link: "",
     status: "",
-    createdAt: "",
+    createdAt: "03-18-24", // MM-DD-YY
+    updatedAt: "",
+  },
+  {
+    id: crypto.randomUUID(),
+    type: "note",
+    title: "",
+    slug: "Sensación extraña",
+    text: "Sensación extraña en el oido izquierdo",
+    date: "",
+    author: "",
+    description: "",
+    image: "",
+    tags: [],
+    link: "",
+    status: "",
+    createdAt: "02-03-24", // MM-DD-YY
     updatedAt: "",
   },
   {
     id: crypto.randomUUID(),
     type: "appointment",
+    title: "",
     slug: "Cita con el otorrino",
     text: "Cita con el otorrino para revisar la sensación extraña en el oido izquierdo",
-    date: "02-12",
+    date: "Mayo 20, 2024 10:30",
+    place: "Hospital Regional de Arica, Dr. Juan Noé Crevani",
     author: "",
-    title: "",
     description: "",
     image: "",
     tags: [],
     link: "",
     status: "",
-    createdAt: "",
+    createdAt: "03-12-24", // MM-DD-YY
     updatedAt: "",
   },
 ];

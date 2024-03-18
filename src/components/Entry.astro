@@ -1,33 +1,40 @@
 ---
 import NoteIcon from "@/icons/note.astro";
 import AppointmentIcon from "@/icons/schedule.astro";
-import ThreedotsIcon from "@/icons/threedots.astro";
 
 const types = {
   note: "note",
   appointment: "appointment",
 };
 
-const { id, type, slug, text, date } = Astro.props;
+const { id, type, slug, text, date, createdAt, place } = Astro.props as Entry;
 ---
 
 <a href=`/entries/${id}` class="w-full">
   <article
-    class="flex flex-col justify-center w-full px-2 hover:scale-105 transition-transform hover:opacity-100 "
+    class="flex justify-between items-center my-1 mx-8 px-2 py-1
+    hover:scale-[1.01] transition-transform duration-75 bg-primary
+    rounded-lg peer"
   >
-    <header class="flex w-full bg-primary items-center justify-between px-4 py-2 rounded-lg m-2">
-      <container class="flex items-center gap-1">
-        <info class="flex flex-col items-center">
-          {type === types.note && <NoteIcon size="24px" />}
-          {type === types.appointment && <AppointmentIcon size="24px" />}
-          <span class="text-xs">{date}</span>
-        </info>
-        <h2 class="text-xl font-bold ms-1">{slug}</h2>
-      </container>
-      <ThreedotsIcon size="24px" class="hover:cursor-pointer" id={id} />
-    </header>
-    <content class="bg-background opacity-0 transition-all p-8 hidden border-2 border-blue-600">
-      <p class="text-white">{text}</p>
-    </content>
+    <div class="flex items-center gap-1">
+      <info class="flex flex-col items-center">
+        {type === types.note && <NoteIcon class="size-6"/>}
+        {type === types.appointment && <AppointmentIcon class="size-6"/>}
+        <span class="text-xs">{createdAt}</span>
+      </info>
+      <h2 class="text-xl font-bold ms-1">{slug}</h2>
+    </div>
   </article>
+  <description
+    class="peer-hover:h-10 flex h-0
+      overflow-hidden mx-8 px-2 z-10
+      rounded-b-lg bg-secondary
+      items-center justify-center
+      transition-all duration-200"
+  >
+    <p class="text-white">
+      {type === types.note && text}
+      {type === types.appointment && `${date} en ${place}`}
+    </p>
+  </description>
 </a>

@@ -2,9 +2,12 @@
 import Entry from "@/components/Entry.astro";
 
 import { ENTRIES } from "@/data/entries.ts";
+const orderedEntries = ENTRIES.sort(
+  (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+);
 ---
 
 <section class="flex flex-col">
   <h2 class="text-xl m-2 text-title">Últimas Entradas</h2>
-  {ENTRIES.map((entry) => <Entry {...entry} />)}
+  {orderedEntries.map((entry) => <Entry {...entry} />)}
 </section>
