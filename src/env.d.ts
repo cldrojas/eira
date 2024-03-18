@@ -25,3 +25,8 @@ enum inputTypes {
   date: "date",
   number: "number"
 }
+
+enum entryTypes {
+  note: "note",
+  appointment: "appointment"
+}
