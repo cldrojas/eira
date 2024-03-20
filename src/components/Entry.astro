@@ -3,7 +3,7 @@ import NoteIcon from "@/icons/note.astro";
 import AppointmentIcon from "@/icons/schedule.astro";
 import { entryTypes } from "@/data/entries";
 
-const { id, type, slug, text, date, createdAt, place } = Astro.props;
+const { id, type, slug, date, createdAt } = Astro.props;
 ---
 
 <a href=`/${type}/${id}` class="w-full">
@@ -31,7 +31,7 @@ const { id, type, slug, text, date, createdAt, place } = Astro.props;
   const $entries = document.querySelectorAll("article");
   $entries.forEach(($entry) => {
     $entry.addEventListener("mousemove", (e) => {
-      const { x, y } = e;
+      const { x } = e;
 
       const { left, width } = $entry.getBoundingClientRect();
       const horizontal = ((x - left) / width) * 100;

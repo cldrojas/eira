@@ -1,12 +1,12 @@
 ---
-import { ENTRIES, getEntry } from "@/data/entries";
+import { getEntry } from "@/data/entries";
 import Layout from "@/layouts/Layout.astro";
 
 const { id } = Astro.params;
 if (!id) return; // maybe an empty skeleton
 const entry = getEntry(id);
 if (!entry) return; // maybe a 404 page
-const { date, slug, type, text } = entry;
+const { slug, text } = entry;
 ---
 
 <Layout title={slug ?? "Sin Título"}>
