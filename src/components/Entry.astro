@@ -1,35 +1,45 @@
 ---
 import NoteIcon from "@/icons/note.astro";
 import AppointmentIcon from "@/icons/schedule.astro";
+import { entryTypes } from "@/data/entries";
 
 const { id, type, slug, text, date, createdAt, place } = Astro.props;
 ---
 
-<a href=`/entries/${id}` class="w-full">
+<a href=`/${type}/${id}` class="w-full">
   <article
     class="flex justify-between items-center my-1 mx-8 px-2 py-1
-    hover:scale-[1.01] transition-transform duration-75 bg-primary
-    rounded-lg peer"
+    hover:scale-[1.05] transition-all duration-300 peer
+    border-b border-t border-accent border-opacity-10
+    [background:linear-gradient(_90deg,rgba(6,68,105,0)_0%,rgba(6,68,105,0.8645833333333334)_var(--bg-horizontal),rgba(6,68,105,0)_100%_)]"
   >
     <div class="flex items-center gap-1">
-      <info class="flex flex-col items-center">
-        {type === entryTypes.note && <NoteIcon class="size-6"/>}
-        {type === entryTypes.appointment && <AppointmentIcon class="size-6"/>}
-        <span class="text-xs">{createdAt}</span>
+      <info class="flex flex-col items-center text-accent text-opacity-50">
+        {type === entryTypes.note && <NoteIcon class="size-6" />}
+        {type === entryTypes.appointment && <AppointmentIcon class="size-6" />}
+        <span class="text-xs">{type === entryTypes.note && createdAt}</span>
       </info>
-      <h2 class="text-xl font-bold ms-1">{slug}</h2>
+      <h3 class="text-accent font-bold ms-1 flex items-center justify-evenly">
+        {slug}
+        {type === entryTypes.appointment && <p class="text-xs ms-2">({date})</p>}
+      </h3>
     </div>
   </article>
-  <description
-    class="peer-hover:h-10 flex h-0
-      overflow-hidden mx-8 px-2 z-10
-      rounded-b-lg bg-secondary
-      items-center justify-center
-      transition-all duration-200"
-  >
-    <p class="text-white">
-      {type === entryTypes.note && text}
-      {type === entryTypes.appointment && `${date} en ${place}`}
-    </p>
-  </description>
 </a>
+
+<script>
+  const $entries = document.querySelectorAll("article");
+  $entries.forEach(($entry) => {
+    $entry.addEventListener("mousemove", (e) => {
+      const { x, y } = e;
+
+      const { left, width } = $entry.getBoundingClientRect();
+      const horizontal = ((x - left) / width) * 100;
+
+      $entry.style.setProperty("--bg-horizontal", `${horizontal.toFixed()}%`);
+    });
+    $entry.addEventListener("mouseleave", () => {
+      $entry.style.setProperty("--bg-horizontal", null);
+    });
+  });
+</script>

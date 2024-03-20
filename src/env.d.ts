@@ -19,14 +19,3 @@ interface Entry {
   updatedAt?: string;
   onclick?: () => void;
 }
-
-enum inputTypes {
-  text: "text",
-  date: "date",
-  number: "number"
-}
-
-enum entryTypes {
-  note: "note",
-  appointment: "appointment"
-}

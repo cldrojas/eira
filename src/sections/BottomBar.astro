@@ -3,13 +3,21 @@ import PlusIcon from "@/icons/pluscircle.astro";
 ---
 
 <footer class="w-full absolute bottom-0">
-  <nav class="bg-title w-full flex justify-center rounded-t-3xl">
-    <ul class="flex gap-8 md:justify-center md:max-w-2xl h-12 items-center">
-      <a href="/">Home</a>
-      <a href="/entries/new" class="bg-background rounded-full p-1 mb-9 hover:bg-green"
+  <nav
+    class=" flex
+     w-full justify-center
+     border-t border-accent border-opacity-25 rounded-t-sm"
+  >
+    <ul class="flex gap-8 md:justify-between md:max-w-2xl h-12 text-accent items-center">
+      <li>
+        <a href="/">Notas</a>
+      </li>
+      <a href="/note/new" class="bg-background rounded-full p-1 mb-9 inline-block"
         ><PlusIcon size="64px" class="text-secondary" /></a
       >
-      <a href="/profile">Profile</a>
+      <li>
+        <a href="/profile">Perfil</a>
+      </li>
     </ul>
   </nav>
 </footer>

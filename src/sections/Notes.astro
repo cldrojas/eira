@@ -1,10 +1,11 @@
 ---
 import Entry from "@/components/Entry.astro";
 
-import { ENTRIES } from "@/data/entries.ts";
+import { ENTRIES } from "@/data/entries.ts";
+
 ---
 
 <section class="flex flex-col">
-  <h2 class="text-xl m-2 text-title">Últimas Entradas</h2>
+  <h2 class="text-lg ms-4 mt-4 text-primary">Últimas Notas</h2>
   {ENTRIES.map((entry) => <Entry {...entry} />)}
 </section>

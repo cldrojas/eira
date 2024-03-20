@@ -2,5 +2,6 @@
 const { label, name, type } = Astro.props;
 ---
 
-<label class="text-formLabel" for="title">{label}: </label>
-<input class="outline-none rounded-md px-1" type={type || "text"} id={name} name={name} />
+<label class="text-primary" for="title">{label}: </label>
+<input class="outline-none my-1 px-1 border-b bg-transparent text-primary
+ border-b-accent w-full" type={type || "text"} id={name} name={name} />

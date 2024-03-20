@@ -11,12 +11,12 @@ const thisMonth = ENTRIES.filter(entry => {
   return created.getMonth() === today.getMonth()
 }).length
 ---
-<section class="bg-background py-2 rounded-b-xl w-full flex flex-col">
+<section class="py-2 rounded-b-xl w-full flex flex-col">
   <div class="flex items-end justify-around mb-4">
     <Counter text="Entradas" number={totalEntries} />
     <div class=`flex flex-col items-center mt-4`>
-      <h2 class="text-2xl font-bold text-primary">Eira</h2>
-      <p class="text-secondary">Bitácora Médica</p>
+      <h2 class="text-2xl font-bold text-accent">Eira</h2>
+      <p class="text-accent">Bitácora Médica</p>
     </div>
     <Counter text="Este mes" number={thisMonth} />
   </div>
@@ -24,7 +24,7 @@ const thisMonth = ENTRIES.filter(entry => {
     <input
       class="w-full h-8 rounded-md focus:outline-none pl-2 "
       type="text"
-      placeholder="Buscar entradas..."
+      placeholder="Buscar ..."
     />
     <Cog class="text-secondary absolute end-6" size="20px" />
   </div>

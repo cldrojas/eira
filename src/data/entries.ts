@@ -1,3 +1,14 @@
+export enum inputTypes {
+  text = "text",
+  date = "date",
+  number = "number",
+}
+
+export enum entryTypes {
+  note = "note",
+  appointment = "appointment",
+}
+
 export const ENTRIES: Entry[] = [
   {
     id: crypto.randomUUID(),
@@ -30,23 +41,6 @@ export const ENTRIES: Entry[] = [
     link: "",
     status: "",
     createdAt: "02-03-24", // MM-DD-YY
-    updatedAt: "",
-  },
-  {
-    id: crypto.randomUUID(),
-    type: "appointment",
-    title: "",
-    slug: "Cita con el otorrino",
-    text: "Cita con el otorrino para revisar la sensación extraña en el oido izquierdo",
-    date: "Mayo 20, 2024 10:30",
-    place: "Hospital Regional de Arica, Dr. Juan Noé Crevani",
-    author: "",
-    description: "",
-    image: "",
-    tags: [],
-    link: "",
-    status: "",
-    createdAt: "03-12-24", // MM-DD-YY
     updatedAt: "",
   },
 ];

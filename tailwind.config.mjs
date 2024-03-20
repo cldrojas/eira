@@ -6,14 +6,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#1dd3b0",
-        secondary: "#086375",
-        accent: "#7bf1a8",
-        disabled: "#495057",
+        background: "#042438",
+        primary: "#5790AB",
+        secondary: "#064469",
+        accent: "#9CCDDB",
+        disabled: "#D0D7E1",
         title: "#A2E8DD",
-        background: "#3c1642",
         formLabel: "#7bf1a8",
       },
+      
     },
   },
   plugins: [animations],

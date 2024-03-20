@@ -1,5 +1,6 @@
 ---
 import BottomBar from "@/sections/BottomBar.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -9,7 +10,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="bg-background box-border font-sans">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -17,6 +18,7 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body class="flex justify-center min-h-svh">
     <div class="relative w-screen max-w-5xl flex flex-col items-center">
@@ -24,12 +26,4 @@ const { title } = Astro.props;
       <BottomBar />
     </div>
   </body>
-
-  <style is:global>
-    html {
-      font-family: system-ui, sans-serif;
-      background: #2c2c2c;
-      box-sizing: border-box;
-    }
-  </style>
 </html>
