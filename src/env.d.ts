@@ -19,3 +19,8 @@ interface Entry {
   updatedAt?: string;
   onclick?: () => void;
 }
+
+interface topBartopBarActions {
+  className: string;
+  action: () => void;
+}
