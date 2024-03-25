@@ -1,0 +1,58 @@
+---
+import PlusIcon from '@/icons/pluscircle.astro'
+---
+
+<footer class="w-full absolute bottom-0">
+	<nav class="">
+		<ul
+			class="flex
+        justify-around items-center
+        border-t border-accent border-opacity-25 rounded-t-sm text-accent"
+		>
+			<li>
+				<div
+					class="cursor-pointer relative bottom-10 border-x rounded-full p-2 border-accent border-opacity-35 bg-background"
+				>
+					<input
+						type="checkbox"
+						class="absolute top-1 left-1 opacity-0 w-14 h-14 peer"
+					/>
+					<PlusIcon
+						size="64px"
+						class="bg-background text-secondary"
+					/>
+					<ul
+						class="bg-transparent absolute h-0 overflow-hidden transition-all duration-300
+            bottom-16 flex flex-col peer-checked:h-full"
+					>
+						<a
+							href="/notes/new"
+							class="h-full w-full border-y bg-opacity-55 bg-secondary border-secondary"
+						>
+							<li>Note</li>
+						</a>
+						<a
+							href="/appointment/new"
+							class="h-full w-full border-y bg-opacity-55 bg-secondary border-secondary"
+						>
+							<li>Appointment</li>
+						</a>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<a href="/">Notas</a>
+			</li>
+			<li>
+				<a href="/profile">Perfil</a>
+			</li>
+		</ul>
+	</nav>
+</footer>
+
+<style>
+	.shown {
+		opacity: 100%;
+		background: white;
+	}
+</style>

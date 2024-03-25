@@ -1,26 +1,23 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-interface Entry {
-  id: string;
-  type: string;
-  slug: string;
-  text: string;
-  date: string;
-  author?: string;
-  place?: string;
-  title?: string;
-  description?: string;
-  image?: string;
-  tags?: string[];
-  link?: string;
-  status?: string;
-  createdAt: string;
-  updatedAt?: string;
-  onclick?: () => void;
+interface Note {
+	id: string
+	title: string
+	content: string
+	todos?: string[]
+	reminders?: string
+	attachments?: string[]
+	createdAt: Date
+	updatedAt: Date
 }
-
+interface Appointment {
+	id: string
+	title: string
+	date: Date
+	place?: string
+}
 interface topBartopBarActions {
-  className: string;
-  action: () => void;
+	className: string
+	action: () => void
 }

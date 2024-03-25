@@ -1,29 +1,49 @@
 ---
-import BottomBar from "@/sections/BottomBar.astro";
-import { ViewTransitions } from "astro:transitions";
+import ActionBar from '@/components/ActionBar.astro'
+import BottomBar from '@/components/BottomBar.astro'
+import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
-  title: string;
+	title: string
+	actionBar?: boolean
+	bottomBar?: boolean
 }
 
-const { title } = Astro.props;
+const { title, actionBar = false, bottomBar = false } = Astro.props
 ---
 
 <!doctype html>
-<html lang="es" class="bg-background box-border font-sans">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <ViewTransitions />
-  </head>
-  <body class="flex justify-center min-h-svh">
-    <div class="relative w-screen max-w-5xl flex flex-col items-center">
-      <slot />
-      <BottomBar />
-    </div>
-  </body>
+<html
+	lang="es"
+	class="bg-background box-border font-sans"
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+		/>
+		<meta
+			name="generator"
+			content={Astro.generator}
+		/>
+		<title>{title}</title>
+		<ViewTransitions />
+	</head>
+	<body class="flex justify-center min-h-svh">
+		<div class="relative w-screen max-w-5xl flex flex-col items-center">
+			{actionBar && <ActionBar />}
+			<slot />
+			{bottomBar && <BottomBar />}
+		</div>
+	</body>
 </html>

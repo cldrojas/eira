@@ -1,0 +1,66 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import FormInput from '@/components/FormInput.astro'
+---
+
+<!-- 
+  id: string
+	title: string
+	content: string
+	todos?: string[]
+	reminders?: string
+	attachments?: string[]
+	createdAt: Date
+	updatedAt: Date
+ -->
+<Layout
+	title="Nueva entrada"
+	actionBar
+>
+	<main class="w-full max-w-5xl mt-2">
+		<form
+			method="POST"
+			class="flex flex-col w-full bg-background rounded-lg p-6"
+		>
+			<h1 class="text-primary">Nueva Entrada</h1>
+			<FormInput
+				label="Título"
+				name="title"
+			/>
+			<FormInput
+				label="Texto"
+				name="content"
+				type="textarea"
+			/>
+			<button
+				type="submit"
+				class="bg-primary text-background rounded-lg p-2 m-2"
+			>
+				Enviar
+			</button>
+		</form>
+	</main>
+</Layout>
+
+<script>
+	import { saveNote } from '@/data/notes'
+	const form = document.querySelector('form')
+	form?.addEventListener('submit', async (e) => {
+		e.preventDefault()
+		const formData = new FormData(form)
+		const data = Object.fromEntries(formData)
+    const newNote:Note = {
+      id: '',
+      title: data.title.toString(),
+      content: data.content.toString(),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+    const note = await saveNote(newNote)
+
+		if(note.id !== '') {
+      window.location.assign('/')
+    }
+		
+	})
+</script>

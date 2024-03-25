@@ -1,43 +1,15 @@
 <nav class="flex w-full border justify-between px-4 text-accent text-lg">
-  <li id="back" class="list-none">◀ back</li>
-  <ul class="list-none flex gap-4">
-    <li id="undo">undo</li>
-    <li id="redo">redo</li>
-    <li id="toggle">toggle todo list</li>
-    <!-- TODO: get the icons -->
-  </ul>
+	<li
+		id="back"
+		class="list-none cursor-pointer"
+		onclick="window.history.back()"
+	>
+		◀ back
+	</li>
+	<ul class="list-none flex gap-4">
+		<li id="undo">undo</li>
+		<li id="redo">redo</li>
+		<li id="toggle">toggle todo list</li>
+		<!-- TODO: get the icons -->
+	</ul>
 </nav>
-
-<script>
-  const topBarItems = document.querySelectorAll("li");
-
-  const goBack = () => {
-    window.history.back();
-  };
-  const toggleTodo = () => {
-    console.log("toggle todo");
-  };
-
-  const undo = () => {
-    console.log("undo");
-  };
-
-  const redo = () => {
-    console.log("redo");
-  };
-
-  const actions = {
-    back: goBack,
-    undo: undo,
-    redo: redo,
-    toggle: toggleTodo,
-  };
-
-  for (const item of topBarItems) {
-    item.classList.add(("cursor-pointer"))
-    item.addEventListener("click", (e) => {
-      console.log(item.id);
-      (actions as { [key: string]: () => void })[item.id]();
-    });
-  }
-</script>

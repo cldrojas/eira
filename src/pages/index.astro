@@ -1,26 +1,27 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Search from "@/sections/Search.astro";
-import Entries from "@/sections/Notes.astro";
-import Appointments from "@/sections/Appointments.astro";
+import Layout from '@/layouts/Layout.astro'
+import Search from '@/sections/Search.astro'
+import Entries from '@/sections/Entries.astro'
 ---
 
-<Layout title="Eira - Bitácora Médica">
-  <main class="w-full max-w-5xl">
-    <Search />
-    <Entries />
-    <Appointments />
-  </main>
+<Layout
+	title="Eira - Bitácora Médica"
+	bottomBar
+>
+	<main class="w-full max-w-5xl">
+		<Search />
+		<Entries />
+	</main>
 </Layout>
 
 <style>
-  .test {
-    background: #042438;
-    primary: #5790AB;
-    secondary: #064469;
-    accent: #9CCDDB;
-    disabled: #D0D7E1;
-    title: #A2E8DD;
-    formlabel: #7bf1a8;
-  }
+	.test {
+		background: #042438;
+		primary: #5790ab;
+		secondary: #064469;
+		accent: #9ccddb;
+		disabled: #d0d7e1;
+		title: #a2e8dd;
+		formlabel: #7bf1a8;
+	}
 </style>

@@ -1,0 +1,27 @@
+---
+import { APPOINTMENTS } from '@/data/appointments'
+import Layout from '@/layouts/Layout.astro'
+
+export function getStaticPaths() {
+	return APPOINTMENTS.map((appointment) => {
+		return {
+			params: {
+				id: appointment.id,
+			},
+		}
+	})
+}
+const { id } = Astro.params
+const appointment = APPOINTMENTS.find((appointment) => appointment.id === id)
+if (!appointment) return
+---
+
+<Layout
+	title={`Appointment: ${appointment.title}`}
+	actionBar
+>
+	<div>
+		<h2>{appointment.title}</h2>
+		<p>{appointment.date}</p>
+	</div>
+</Layout>

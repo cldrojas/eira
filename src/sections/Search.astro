@@ -3,9 +3,9 @@ import Cog from "@/icons/cog.astro";
 import SearchIcon from "@/icons/search.astro";
 import Counter from "@/components/Counter.astro";
 
-import { ENTRIES } from "@/data/entries";
-const totalEntries = ENTRIES.length;
-const thisMonth = ENTRIES.filter((entry) => {
+import { NOTES } from "@/data/notes";
+const totalEntries = NOTES.length;
+const thisMonth = NOTES.filter((entry) => {
   const created = new Date(entry.createdAt);
   const today = new Date();
   return created.getMonth() === today.getMonth();

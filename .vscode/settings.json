@@ -1,10 +1,11 @@
 {
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  },
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
-  "prettier.singleAttributePerLine": true,
-  "prettier.useTabs": true
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
+	"prettier.semi": false,
+	"prettier.singleQuote": true,
+	"prettier.singleAttributePerLine": true,
+	"prettier.useTabs": true,
+	"prettier.printWidth": 80
 }

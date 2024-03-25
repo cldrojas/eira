@@ -1,0 +1,33 @@
+---
+import NoteIcon from '@/icons/note.astro'
+import { NOTES } from '@/data/notes'
+import Layout from '@/layouts/Layout.astro'
+
+import ActionBar from '@/components/ActionBar.astro'
+
+export function getStaticPaths() {
+	return NOTES.map((note) => {
+		return {
+			params: {
+				id: note.id,
+			},
+		}
+	})
+}
+
+const { id } = Astro.params
+if (!id) return
+
+const note = NOTES.find((note) => note.id === id)
+if (!note) return
+---
+
+<Layout title={note.title} actionBar>
+	<article>
+		<header>
+			<h1>{note.title}</h1>
+			<p>{note.createdAt}</p>
+		</header>
+		<div>{note.content}</div>
+	</article>
+</Layout>

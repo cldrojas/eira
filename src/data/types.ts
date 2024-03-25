@@ -5,6 +5,7 @@ export enum inputTypes {
 }
 
 export enum entryTypes {
-  note = "note",
-  appointment = "appointment",
+  NOTE = "note",
+  APPOINTMENT = "appointment",
+  REMINDER = "reminder",
 }
