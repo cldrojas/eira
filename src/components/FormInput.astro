@@ -1,7 +1,15 @@
 ---
-const { label, name, type } = Astro.props;
----
+import React from 'react';
+import { Astro } from 'astro';
 
-<label class="text-primary" for="title">{label}: </label>
-<input class="outline-none my-1 px-1 border-b bg-transparent text-primary
- border-b-accent w-full" type={type || "text"} id={name} name={name} />
+const { label, name, type } = Astro.props;
+
+export default function MyComponent() {
+  return (
+    <>
+      <label className="text-primary" htmlFor="title">{label}: </label>
+      <input className="outline-none my-1 px-1 border-b bg-transparent text-primary border-b-accent w-full" type={type || "text"} id={name} name={name} />
+    </>
+  );
+}
+---
