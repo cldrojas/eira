@@ -4,6 +4,7 @@
 interface Note {
 	id: string
 	title: string
+	description?: string
 	content: string
 	todos?: string[]
 	reminders?: string
