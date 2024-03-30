@@ -1,6 +1,9 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import FormInput from '@/components/FormInput.astro'
+import { toLocal } from '@/utils/date'
+
+const { title, description, content, todos } = Astro.props as Note
 ---
 
 <!-- 
@@ -17,27 +20,47 @@ import FormInput from '@/components/FormInput.astro'
 	title="Nueva entrada"
 	actionBar
 >
-	<main class="w-full max-w-5xl mt-2">
+	<main class="w-full max-w-5xl mt-2 text-primary text-lg">
 		<form
 			method="POST"
 			class="flex flex-col w-full bg-background rounded-lg p-6"
 		>
-			<h1 class="text-primary">Nueva Entrada</h1>
 			<FormInput
-				label="Título"
+				class="text-2xl font-bold text-accent"
 				name="title"
+				placeholder={title || 'Homework'}
 			/>
+			<small class="my-2"
+				>{toLocal(new Date(), { dateStyle: 'long', timeStyle: 'short' })}</small
+			>
 			<FormInput
-				label="Texto"
-				name="content"
+				class="border-l-4 border-accent ps-2 my-4"
+				name="description"
+				placeholder={description ||
+					'Find 10 videos about ilutsrations to share with classmates next week.'}
 				type="textarea"
 			/>
-			<button
-				type="submit"
-				class="bg-primary text-background rounded-lg p-2 m-2"
-			>
-				Enviar
-			</button>
+
+			<FormInput
+				class="w-full text-pretty text-lg p-2 my-4"
+				name="content"
+				type="textarea"
+				placeholder={content ||
+					'An ilustratuin is a decoration, interpretation or visual explanation of a text, concept or process, designed for integration in published media, such as posters, flyers, magazines, books, teaching materials, animations, video games and films. An ilustration is tipically created by an ilustrator.'}
+			/>
+
+			{
+				todos && (
+					<div class="flex flex-col my-4">
+						<h3 class="text-xl font-bold">To do</h3>
+						<ul class="list-disc list-inside">
+							{todos.map((todo) => (
+								<li>{todo}</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
 		</form>
 	</main>
 </Layout>
@@ -45,22 +68,28 @@ import FormInput from '@/components/FormInput.astro'
 <script>
 	import { saveNote } from '@/data/notes'
 	const form = document.querySelector('form')
-	form?.addEventListener('submit', async (e) => {
-		e.preventDefault()
-		const formData = new FormData(form)
-		const data = Object.fromEntries(formData)
-    const newNote:Note = {
-      id: '',
-      title: data.title.toString(),
-      content: data.content.toString(),
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-    const note = await saveNote(newNote)
+	const $backbtn = document.querySelector('#back')
 
-		if(note.id !== '') {
-      window.location.assign('/')
-    }
-		
+	$backbtn?.addEventListener('click', async () => {
+		if (!form) return
+		const formData = new FormData(form)
+		console.log(`DEBUG:fullFormData:`, formData)
+		const data = Object.fromEntries(formData)
+		console.log(`DEBUG:formData:`, data)
+		const newNote: Note = {
+			id: '',
+			title: data.title.toString(),
+			description: data.description.toString(),
+			content: data.content.toString(),
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		}
+		console.log(`DEBUG:newNote:`, newNote)
+		const noteId = await saveNote(newNote)
+
+		if (!noteId) {
+			throw new Error('Error saving note')
+		}
+		window.location.assign('/')
 	})
 </script>
