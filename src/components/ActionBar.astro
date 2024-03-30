@@ -1,15 +1,28 @@
-<nav class="flex w-full border justify-between px-4 text-accent text-lg">
-	<li
-		id="back"
-		class="list-none cursor-pointer"
-		onclick="window.history.back()"
-	>
-		◀ back
-	</li>
-	<ul class="list-none flex gap-4">
-		<li id="undo">undo</li>
-		<li id="redo">redo</li>
-		<li id="toggle">toggle todo list</li>
-		<!-- TODO: get the icons -->
+---
+import UnoIcon from '@/icons/undo.astro'
+import RedoIcon from '@/icons/redo.astro'
+import TodoIcon from '@/icons/todo.astro'
+import BackIcon from '@/icons/back.astro'
+interface Props {
+	onBack: string
+}
+---
+
+<nav
+	class="flex w-full items-center justify-between py-6 ps-2 pe-8 text-lg
+	text-accent"
+>
+	<ul class="p-2">
+		<li
+			id="back"
+			class="list-none cursor-pointer"
+		>
+			<BackIcon class="size-6" />
+		</li>
+	</ul>
+	<ul class="flex items-center gap-2">
+		<li id="undo"><UnoIcon class="size-6" /></li>
+		<li id="redo"><RedoIcon class="size-6" /></li>
+		<li id="toggle"><TodoIcon class="size-6" /></li>
 	</ul>
 </nav>
