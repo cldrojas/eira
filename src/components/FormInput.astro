@@ -1,7 +1,36 @@
 ---
-const { label, name, type } = Astro.props;
+const { label, name, type, placeholder, value, rows } = Astro.props
 ---
 
-<label class="text-primary" for="title">{label}: </label>
-<input class="outline-none my-1 px-1 border-b bg-transparent text-primary
- border-b-accent w-full" type={type || "text"} id={name} name={name} />
+{
+	label && (
+		<label
+			class="text-primary"
+			for={name}
+		>
+			{label}:
+		</label>
+	)
+}
+{
+	type === 'textarea' ? (
+		<textarea
+			class={`outline-none  bg-transparent resize-none ${Astro.props.class}`}
+			style="field-sizing: content"
+			placeholder={placeholder}
+			id={name}
+			name={name}
+			rows={rows || '1'}
+			value={value}
+		/>
+	) : (
+		<input
+			class={`outline-none  bg-transparent ${Astro.props.class}`}
+			type={type || 'text'}
+			placeholder={placeholder || ''}
+			id={name}
+			name={name}
+			value={value}
+		/>
+	)
+}
