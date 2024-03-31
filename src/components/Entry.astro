@@ -1,12 +1,27 @@
 ---
 import NoteIcon from '@/icons/note.astro'
-import AppointmentIcon from '@/icons/schedule.astro'
+import LocationIcon from '@/icons/location.astro'
+import DateIcon from '@/icons/test.astro'
+import TimeIcon from '@/icons/time.astro'
 import { entryTypes } from '@/data/types'
 import { toLocal } from '@/utils/date'
 
+interface Props {
+	entry: {
+		id: string
+		type: entryTypes
+		title: string
+		description: string
+		place: {
+			name: string
+			location: string
+		}
+		createdAt: Date
+		date: Date
+	}
+}
 const { entry } = Astro.props
-console.log(`DEBUG:entry:`, entry)
-const { id, type, title, createdAt, date } = entry
+const { id, type, title, createdAt, date, place, description } = entry
 ---
 
 <a
@@ -19,22 +34,50 @@ const { id, type, title, createdAt, date } = entry
     border-y border-accent border-opacity-10
     [background:linear-gradient(_90deg,rgba(6,68,105,0)_0%,rgba(6,68,105,0.8645833333333334)_var(--bg-horizontal),rgba(6,68,105,0)_100%_)]"
 	>
-		<div class="flex items-center gap-1">
-			<info class="flex flex-col items-center text-accent text-opacity-50">
+		<div class="flex items-start w-full">
+			<info class="flex flex-col items-center text-accent text-opacity-50 me-2">
 				{type === entryTypes.NOTE && <NoteIcon class="size-6" />}
-				{type === entryTypes.APPOINTMENT && <AppointmentIcon class="size-6" />}
 				<span class="text-xs">
-					{type === entryTypes.NOTE && createdAt}
+					{
+						type === entryTypes.NOTE &&
+							toLocal(createdAt, { dateStyle: 'medium' })
+					}
 				</span>
 			</info>
-			<h3 class="text-accent font-bold ms-1 flex items-center justify-evenly">
-				{title}
+
+			<content
+				class="flex items-center"
+				class:list={[type === entryTypes.NOTE && 'flex-col', 'md:flex-row']}
+			>
+				<h3 class="text-accent font-bold">
+					{title}
+				</h3>
 				{
-					type === entryTypes.APPOINTMENT && (
-						<p class="text-xs ms-2">{toLocal(date)}</p>
+					type === entryTypes.NOTE && (
+						<div class="text-accent text-opacity-50 text-xs ms-2 flex self-center">
+							<p class="flex justify-around">{description}</p>
+						</div>
 					)
 				}
-			</h3>
+				{
+					type === entryTypes.APPOINTMENT && (
+						<div class="text-accent text-opacity-50 text-xs ms-2 flex flex-row">
+							<p class="flex justify-around">
+								<DateIcon class="size-4 mx-1" />
+								{toLocal(date, { dateStyle: 'medium' })}
+							</p>
+							<p class="flex justify-around">
+								<TimeIcon class="size-4 mx-1" />
+								{toLocal(date, { timeStyle: 'short' })}
+							</p>
+							<p class="hidden md:flex ms-1 ">
+								<LocationIcon class="size-4" />
+								{place.name}
+							</p>
+						</div>
+					)
+				}
+			</content>
 		</div>
 	</article>
 </a>

@@ -15,17 +15,16 @@ const { label, name, type, placeholder, value, rows } = Astro.props
 {
 	type === 'textarea' ? (
 		<textarea
-			class={`outline-none  bg-transparent resize-none ${Astro.props.class}`}
-			style="field-sizing: content"
-			placeholder={placeholder}
+			class={`outline-none  bg-transparent resize-none placeholder-disabled ${Astro.props.class}`}
 			id={name}
 			name={name}
+			placeholder={placeholder || ''}
 			rows={rows || '1'}
-			value={value}
-		/>
+			style="field-sizing: content"
+		>{value || ''}</textarea>
 	) : (
 		<input
-			class={`outline-none  bg-transparent ${Astro.props.class}`}
+			class={`outline-none  bg-transparent placeholder-disabled ${Astro.props.class}`}
 			type={type || 'text'}
 			placeholder={placeholder || ''}
 			id={name}

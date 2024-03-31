@@ -7,9 +7,15 @@ interface Props {
 	title: string
 	actionBar?: boolean
 	bottomBar?: boolean
+	backButton?: boolean
 }
 
-const { title, actionBar = false, bottomBar = false } = Astro.props
+const {
+	title,
+	actionBar = false,
+	bottomBar = false,
+	backButton = false,
+} = Astro.props
 ---
 
 <!doctype html>
@@ -41,7 +47,22 @@ const { title, actionBar = false, bottomBar = false } = Astro.props
 	</head>
 	<body class="flex justify-center min-h-svh">
 		<div class="relative w-screen max-w-5xl flex flex-col items-center">
-			{actionBar && <ActionBar />}
+			{
+				backButton && (
+					<ActionBar
+						backButton
+						actions={false}
+					/>
+				)
+			}
+			{
+				actionBar && (
+					<ActionBar
+						backButton
+						actions
+					/>
+				)
+			}
 			<slot />
 			{bottomBar && <BottomBar />}
 		</div>
