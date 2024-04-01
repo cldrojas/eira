@@ -1,20 +1,23 @@
 ---
+import { db, Notes } from 'astro:db'
+const notes = await db.select().from(Notes)
+
 import Entry from '@/components/Entry.astro'
 import { entryTypes } from '@/data/types'
 
-// import { NOTES } from '@/data/notes'
 import { APPOINTMENTS } from '@/data/appointments'
-const NOTES:Note[] = await Astro.glob('@/data/notes')
+// const NOTES: Note[] = await Astro.glob('@/data/notes')
+// const APPOINTMENTS: Appointment[] = await Astro.glob('@/data/appointments')
 ---
 
 <section class="flex flex-col">
 	<h2 class="text-lg ms-4 mt-4 text-primary">Últimas Notas</h2>
 
-	{NOTES.map((note) => <Entry entry={{ ...note, type: entryTypes.NOTE }} />)}
+	{notes.map((note) => <Entry entry={{ ...note, type: entryTypes.NOTE }} />)}
 	<h2 class="text-lg ms-4 mt-4 text-primary">Próximas Citas</h2>
 	{
-		APPOINTMENTS.map((note) => (
-			<Entry entry={{ ...note, type: entryTypes.APPOINTMENT }} />
+		APPOINTMENTS.map((appointment) => (
+			<Entry entry={{ ...appointment, type: entryTypes.APPOINTMENT }} />
 		))
 	}
 </section>

@@ -1,33 +1,103 @@
 ---
-import NoteIcon from '@/icons/note.astro'
-import { NOTES } from '@/data/notes'
+import { db, Notes, Todos } from 'astro:db'
+
 import Layout from '@/layouts/Layout.astro'
-
-import ActionBar from '@/components/ActionBar.astro'
-
-export function getStaticPaths() {
-	return NOTES.map((note) => {
-		return {
-			params: {
-				id: note.id,
-			},
-		}
-	})
-}
+import FormInput from '@/components/FormInput.astro'
+import { toLocal } from '@/utils/date'
+import { eq } from 'astro:db'
 
 const { id } = Astro.params
 if (!id) return
 
-const note = NOTES.find((note) => note.id === id)
+const notes = await db.select().from(Notes).where(eq(Notes.id, id))
+if (!notes) return
+
+const todos = await db
+	.select({ title: Todos.title, completed: Todos.completed })
+	.from(Todos)
+	.where(eq(Todos.noteId, id))
+
+const note = notes.find((note) => note.id === id)
 if (!note) return
+
+const edit = toLocal(new Date(), { timeStyle: 'short' })
 ---
 
-<Layout title={note.title} actionBar>
-	<article>
-		<header>
-			<h1>{note.title}</h1>
-			<p>{note.createdAt}</p>
-		</header>
-		<div>{note.content}</div>
-	</article>
+<Layout
+	title={note.title}
+	actionBar
+>
+	<main class="w-full max-w-5xl mt-2 text-primary text-lg">
+		<form
+			method="POST"
+			class="flex flex-col w-full bg-background rounded-lg p-6"
+		>
+			<FormInput
+				class="text-2xl font-bold text-accent"
+				name="title"
+				placeholder="Título"
+				value={note.title}
+			/>
+			<FormInput
+				class="border-l-4 border-accent ps-2 my-4"
+				name="description"
+				type="textarea"
+				value={note.description}
+			/>
+
+			<FormInput
+				class="w-full text-pretty text-lg p-2 my-4"
+				name="content"
+				type="textarea"
+				placeholder={note.content || 'Nota'}
+				value={note.content}
+			/>
+
+			{
+				todos && (
+					<div class="flex flex-col my-4">
+						<h3 class="text-xl font-bold">To do</h3>
+						<ul class="list-disc list-inside">
+							{todos.map((todo) => (
+								<li>{todo.completed}</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+			<p>
+				text style bar -
+				<small class="my-2">Editado {edit}</small>
+			</p>
+		</form>
+	</main>
 </Layout>
+
+<script>
+	import { saveNote } from '@/data/notes'
+	const form = document.querySelector('form')
+	const $backbtn = document.querySelector('#back')
+
+	$backbtn?.addEventListener('click', async () => {
+		if (!form) return
+		const formData = new FormData(form)
+		console.log(`DEBUG:fullFormData:`, formData)
+		const data = Object.fromEntries(formData)
+		console.log(`DEBUG:formData:`, data)
+		const newNote: Note = {
+			id: '',
+			title: data.title.toString(),
+			description: data.description.toString(),
+			content: data.content.toString(),
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		}
+		console.log(`DEBUG:newNote:`, newNote)
+		const noteId = await saveNote(newNote)
+
+		if (!noteId) {
+			throw new Error('Error saving note')
+		}
+		window.location.assign('/')
+	})
+</script>

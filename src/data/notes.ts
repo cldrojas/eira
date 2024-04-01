@@ -2,17 +2,19 @@ export const NOTES: Note[] = [
 	{
 		id: 'first-note',
 		title: 'First Note',
-		content: 'This is the first note',
-		createdAt: new Date('18-04-2021'),
+		description: 'This is the first note',
+		content: 'The first note was added just for testing',
+		createdAt: new Date(),
 		updatedAt: new Date(),
 	},
 	{
 		id: 'second-note',
-		title: 'Second Note',
-		content: 'This is the second note',
+		title: 'second Note',
+		description: 'This is the second note',
+		content: 'The second note was added just for testing',
 		createdAt: new Date(),
 		updatedAt: new Date(),
-	},
+	}
 ]
 
 export const saveNote = async (note: Note): Promise<Note> => {
