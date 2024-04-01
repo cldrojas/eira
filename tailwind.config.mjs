@@ -10,7 +10,7 @@ export default {
         primary: "#5790AB",
         secondary: "#064469",
         accent: "#9CCDDB",
-        disabled: "#D0D7E1",
+        disabled: "#5d6065",
         title: "#A2E8DD",
         formLabel: "#7bf1a8",
       },

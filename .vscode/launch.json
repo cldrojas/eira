@@ -1,11 +1,15 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "command": "./node_modules/.bin/astro dev",
-      "name": "Development server",
-      "request": "launch",
-      "type": "node-terminal"
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"serverReadyAction": {
+				"action": "openExternally",
+				"pattern": "Listening on http://localhost:3000"
+			},
+			"command": "pnpm dev --host --open",
+			"name": "Development server",
+			"request": "launch",
+			"type": "node-terminal"
+		}
+	]
 }
