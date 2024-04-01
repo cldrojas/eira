@@ -1,17 +1,29 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from '@/layouts/Layout.astro'
 ---
 
-<Layout title="Perfil" actionBar>
-  <main class="text-white">
-    <h1 class="text-2xl">Profile</h1>
-    <div><h1></h1></div>
-    <p>
-      here you should show all the options that the bar/wheel
-      <span class="text-title bg-yellow-700 rounded-full p-1.5">
-        <span class="text-title">Idea:</span>
-        Lista seleccionable y ordenable
-      </span>
-    </p>
-  </main>
+<Layout
+	title="Perfil"
+	actionBar
+	backButton
+>
+	<main class="text-white">
+		<h1 class="text-2xl">Profile</h1>
+		<p>
+			here you should show all the options that the bar/wheel
+			<span class="text-title bg-yellow-700 rounded-full p-1.5">
+				<span class="text-title">Idea:</span>
+				Lista seleccionable y ordenable
+			</span>
+		</p>
+		<button id="login">Login</button>
+		<button id="logout">Logout</button>
+	</main>
 </Layout>
+
+<script>
+	const { signIn, signOut } = await import('auth-astro/client')
+	const $login = document.getElementById('login')
+	if ($login == null) throw new Error('Element not found')
+	$login.onclick = () => signIn('google')
+</script>
