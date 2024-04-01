@@ -1,5 +1,5 @@
 ---
-const { label, name, type, placeholder, value, rows } = Astro.props
+const { label, name, type = 'text', placeholder = '', value, rows } = Astro.props
 ---
 
 {
@@ -18,15 +18,15 @@ const { label, name, type, placeholder, value, rows } = Astro.props
 			class={`outline-none  bg-transparent resize-none placeholder-disabled ${Astro.props.class}`}
 			id={name}
 			name={name}
-			placeholder={placeholder || ''}
+			placeholder={placeholder}
 			rows={rows || '1'}
 			style="field-sizing: content"
-		>{value || ''}</textarea>
+		>{value}</textarea>
 	) : (
 		<input
 			class={`outline-none  bg-transparent placeholder-disabled ${Astro.props.class}`}
-			type={type || 'text'}
-			placeholder={placeholder || ''}
+			type={type}
+			placeholder={placeholder}
 			id={name}
 			name={name}
 			value={value}

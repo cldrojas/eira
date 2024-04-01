@@ -5,11 +5,11 @@ import TodoIcon from '@/icons/todo.astro'
 import BackIcon from '@/icons/back.astro'
 
 interface Props {
-	actions: boolean
-	backButton: boolean
+	actions?: boolean
+	backButton?: boolean
 }
 
-const { actions = true, backButton = true } = Astro.props
+const { actions = false, backButton = true } = Astro.props
 ---
 
 <nav
@@ -24,7 +24,7 @@ const { actions = true, backButton = true } = Astro.props
 					class="list-none cursor-pointer"
 					onclick="window.history.back()"
 				>
-					<BackIcon class="size-6" />
+					<BackIcon class="size-6 font-thin" />
 				</li>
 			</ul>
 		)

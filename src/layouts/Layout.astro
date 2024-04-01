@@ -47,22 +47,10 @@ const {
 	</head>
 	<body class="flex justify-center min-h-svh">
 		<div class="relative w-screen max-w-5xl flex flex-col items-center">
-			{
-				backButton && (
-					<ActionBar
-						backButton
-						actions={false}
-					/>
-				)
-			}
-			{
-				actionBar && (
-					<ActionBar
-						backButton
-						actions
-					/>
-				)
-			}
+			<ActionBar
+				backButton={backButton}
+				actions={actionBar}
+			/>
 			<slot />
 			{bottomBar && <BottomBar />}
 		</div>

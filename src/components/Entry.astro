@@ -11,13 +11,13 @@ interface Props {
 		id: string
 		type: entryTypes
 		title: string
-		description: string
-		place: {
+		description?: string
+		date?: Date
+		place?: {
 			name: string
 			location: string
 		}
-		createdAt: Date
-		date: Date
+		createdAt?: Date
 	}
 }
 const { entry } = Astro.props
@@ -40,6 +40,7 @@ const { id, type, title, createdAt, date, place, description } = entry
 				<span class="text-xs">
 					{
 						type === entryTypes.NOTE &&
+							createdAt &&
 							toLocal(createdAt, { dateStyle: 'medium' })
 					}
 				</span>
@@ -64,15 +65,15 @@ const { id, type, title, createdAt, date, place, description } = entry
 						<div class="text-accent text-opacity-50 text-xs ms-2 flex flex-row">
 							<p class="flex justify-around">
 								<DateIcon class="size-4 mx-1" />
-								{toLocal(date, { dateStyle: 'medium' })}
+								{date && toLocal(date, { dateStyle: 'medium' })}
 							</p>
 							<p class="flex justify-around">
 								<TimeIcon class="size-4 mx-1" />
-								{toLocal(date, { timeStyle: 'short' })}
+								{date && toLocal(date, { timeStyle: 'short' })}
 							</p>
 							<p class="hidden md:flex ms-1 ">
 								<LocationIcon class="size-4" />
-								{place.name}
+								{place && place.name}
 							</p>
 						</div>
 					)
