@@ -1,5 +1,23 @@
 import { Notes, db } from 'astro:db'
-import { NOTES } from '@/data/notes'
+
+const NOTES = [
+	{
+		id: '1',
+		title: 'Note 1',
+		description: 'Description 1',
+		content: 'Content 1',
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: '2',
+		title: 'Note 2',
+		description: 'Description 2',
+		content: 'Content 2',
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+]
 
 // https://astro.build/db/seed
 export default async function seed() {

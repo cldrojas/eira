@@ -1,13 +1,10 @@
 ---
-import { db, Notes } from 'astro:db'
-const notes = await db.select().from(Notes)
+import { notes } from '@/data/notes'
 
 import Entry from '@/components/Entry.astro'
 import { entryTypes } from '@/data/types'
 
 import { APPOINTMENTS } from '@/data/appointments'
-// const NOTES: Note[] = await Astro.glob('@/data/notes')
-// const APPOINTMENTS: Appointment[] = await Astro.glob('@/data/appointments')
 ---
 
 <section class="flex flex-col">

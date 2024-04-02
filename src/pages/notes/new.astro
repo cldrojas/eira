@@ -1,19 +1,12 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import FormInput from '@/components/FormInput.astro'
-interface Props {
-	title: string
-	description: string
-	content: string
-	todo?: Todo[]
-}
-const { title, description, content } = Astro.props as Note
 ---
 
 <Layout
 	title="Nueva Nota"
-	actionBar
 	backButton
+	actionBar
 >
 	<main class="w-full max-w-5xl text-primary text-lg">
 		<form

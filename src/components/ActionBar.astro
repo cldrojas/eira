@@ -6,29 +6,24 @@ import BackIcon from '@/icons/back.astro'
 
 interface Props {
 	actions?: boolean
-	backButton?: boolean
 }
 
-const { actions = false, backButton = true } = Astro.props
+const { actions = false } = Astro.props
 ---
 
 <nav
 	class="flex w-full items-center justify-between py-6 ps-2 pe-8 text-lg
 	text-accent"
 >
-	{
-		backButton && (
-			<ul class="p-2">
-				<li
-					id="back"
-					class="list-none cursor-pointer"
-					onclick="window.history.back()"
-				>
-					<BackIcon class="size-6 font-thin" />
-				</li>
-			</ul>
-		)
-	}
+	<ul class="p-2">
+		<li
+			id="back"
+			class="list-none cursor-pointer"
+			onclick="window.history.back()"
+		>
+			<BackIcon class="size-6 font-thin" />
+		</li>
+	</ul>
 	{
 		actions && (
 			<ul class="flex items-center gap-2">

@@ -1,33 +1,42 @@
 ---
-import SearchIcon from "@/icons/search.astro";
-import Counter from "@/components/Counter.astro";
+import SearchIcon from '@/icons/search.astro'
+import Counter from '@/components/Counter.astro'
 
-import { NOTES } from "@/data/notes";
-const totalEntries = NOTES.length;
-const thisMonth = NOTES.filter((entry) => {
-  const created = new Date(entry.createdAt);
-  const today = new Date();
-  return created.getMonth() === today.getMonth();
-});
+import { notes } from '@/data/notes'
+const totalEntries = notes.length
+const thisMonth = notes.filter((entry) => {
+	const created = new Date(entry.createdAt)
+	const today = new Date()
+	return created.getMonth() === today.getMonth()
+})
 ---
+
 <section class="py-2 rounded-b-xl w-full flex flex-col">
-  <div class="flex items-end justify-around mb-4">
-    <Counter text="Entradas" number={totalEntries} />
-    <div class=`flex flex-col items-center mt-4`>
-      <h2 class="text-2xl font-bold text-accent">Eira</h2>
-      <p class="text-accent">Bitácora Médica</p>
-    </div>
-    <Counter text="Este mes" number={thisMonth.length} />
-  </div>
-  <div class="flex items-center px-4 p-6 relative justify-center">
-    <input
-      class="peer w-full h-10 focus:outline-none pl-10 border-opacity-50 border-y
+	<div class="flex items-end justify-around mb-4">
+		<Counter
+			text="Entradas"
+			number={totalEntries}
+		/>
+		<div class=`flex flex-col items-center mt-4`>
+			<h2 class="text-2xl font-bold text-accent">Eira</h2>
+			<p class="text-accent">Bitácora Médica</p>
+		</div>
+		<Counter
+			text="Este mes"
+			number={thisMonth.length}
+		/>
+	</div>
+	<div class="flex items-center px-4 p-6 relative justify-center">
+		<input
+			class="peer w-full h-10 focus:outline-none pl-10 border-opacity-50 border-y
       bg-background border-primary text-primary placeholder:text-secondary
        focus:border-primary focus:placeholder-secondary focus:border-opacity-70"
-      type="text"
-      placeholder="Buscar ..."
-      autofocus
-    />
-    <SearchIcon class="size-5 absolute start-6 text-opacity-50 peer-focus:text-opacity-70 text-primary peer-focus:text-primary" />
-  </div>
+			type="text"
+			placeholder="Buscar ..."
+			autofocus
+		/>
+		<SearchIcon
+			class="size-5 absolute start-6 text-opacity-50 peer-focus:text-opacity-70 text-primary peer-focus:text-primary"
+		/>
+	</div>
 </section>
