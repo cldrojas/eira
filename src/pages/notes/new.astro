@@ -24,6 +24,7 @@ import FormInput from '@/components/FormInput.astro'
 				name="content"
 				type="textarea"
 				placeholder="Nota"
+				autocapitalize="sentences"
 			/>
 		</form>
 	</main>
@@ -31,29 +32,44 @@ import FormInput from '@/components/FormInput.astro'
 
 <script>
 	import { saveNote } from '@/data/notes'
-	const form = document.querySelector('form')
-	const $backbtn = document.querySelector('#back')
+	import { toLocal } from '@/utils/date'
 
-	$backbtn?.addEventListener('click', async () => {
-		if (!form) return
-		const formData = new FormData(form)
-		console.log(`DEBUG:fullFormData:`, formData)
-		const data = Object.fromEntries(formData)
-		console.log(`DEBUG:formData:`, data)
-		const newNote: Note = {
-			id: '',
-			title: data.title.toString(),
-			description: data.description.toString(),
-			content: data.content.toString(),
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		}
-		console.log(`DEBUG:newNote:`, newNote)
-		const noteId = await saveNote(newNote)
+	document.addEventListener('astro:page-load', () => {
+		const $back = document.querySelector('#back-btn') as HTMLElement
 
-		if (!noteId) {
-			throw new Error('Error saving note')
-		}
-		window.location.assign('/')
+		const $content = document.querySelector(
+			'textarea[name="content"]'
+		) as HTMLElement
+
+		$content?.focus()
+
+		const $form = document.querySelector('form') as HTMLFormElement
+		$form?.addEventListener('submit', (event) => {
+			event.preventDefault()
+		})
+
+		$back?.addEventListener('click', () => {
+			const now = new Date()
+			const formData = new FormData($form)
+			const data = Object.fromEntries(formData.entries())
+			const { title, content } = data
+			const note = {
+				id: `note-${title.toString().toLowerCase().replace(/\s/g, '-')}`,
+				title: title.toString(),
+				content: content.toString(),
+				createdAt: toLocal(now, {
+					dateStyle: 'medium',
+					timeStyle: 'short',
+				}),
+				updatedAt: toLocal(now, {
+					dateStyle: 'medium',
+					timeStyle: 'short',
+				}),
+			}
+			console.log(`DEBUG:note:`, note)
+
+			saveNote(note)
+			history.back()
+		})
 	})
 </script>

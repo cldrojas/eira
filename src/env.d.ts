@@ -9,8 +9,8 @@ interface Note {
 	description?: string
 	reminders?: string
 	attachments?: string[]
-	createdAt: Date
-	updatedAt: Date
+	createdAt: Date | string
+	updatedAt: Date | string
 }
 
 interface Todo {
