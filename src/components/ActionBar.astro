@@ -16,13 +16,9 @@ const { actions = false } = Astro.props
 	text-accent"
 >
 	<ul class="p-2">
-		<li
-			id="back-btn"
-			class="list-none cursor-pointer"
-			onclick="window.history.back()"
-		>
+		<button id="back-btn">
 			<BackIcon class="size-6 font-thin" />
-		</li>
+		</button>
 	</ul>
 	{
 		actions && (

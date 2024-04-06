@@ -5,14 +5,10 @@ import FormInput from '@/components/FormInput.astro'
 
 <Layout
 	title="Nueva Nota"
-	backButton
 	actionBar
 >
 	<main class="w-full max-w-5xl text-primary text-lg">
-		<form
-			method="POST"
-			class="flex flex-col w-full bg-background rounded-lg px-6"
-		>
+		<form class="flex flex-col w-full bg-background rounded-lg px-6">
 			<FormInput
 				class="text-2xl font-bold text-accent"
 				name="title"
@@ -29,47 +25,32 @@ import FormInput from '@/components/FormInput.astro'
 		</form>
 	</main>
 </Layout>
+<script>
+	const back = document.querySelector(`#back-btn`)
+	back?.addEventListener(`click`, () => {
+		console.log(`going back`)
+		window.history.back()
+	})
+</script>
 
 <script>
-	import { saveNote } from '@/data/notes'
-	import { toLocal } from '@/utils/date'
-
-	document.addEventListener('astro:page-load', () => {
-		const $back = document.querySelector('#back-btn') as HTMLElement
-
-		const $content = document.querySelector(
-			'textarea[name="content"]'
-		) as HTMLElement
-
-		$content?.focus()
-
-		const $form = document.querySelector('form') as HTMLFormElement
-		$form?.addEventListener('submit', (event) => {
-			event.preventDefault()
+	const form = document.querySelector(`form`)
+	form?.addEventListener(`submit`, async (e) => {
+		e.preventDefault()
+		const formData = new FormData(form)
+		const data = Object.fromEntries(formData)
+		const response = await window.fetch('/api/notes', {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': `application/json`,
+			},
 		})
-
-		$back?.addEventListener('click', () => {
-			const now = new Date()
-			const formData = new FormData($form)
-			const data = Object.fromEntries(formData.entries())
-			const { title, content } = data
-			const note = {
-				id: `note-${title.toString().toLowerCase().replace(/\s/g, '-')}`,
-				title: title.toString(),
-				content: content.toString(),
-				createdAt: toLocal(now, {
-					dateStyle: 'medium',
-					timeStyle: 'short',
-				}),
-				updatedAt: toLocal(now, {
-					dateStyle: 'medium',
-					timeStyle: 'short',
-				}),
-			}
-			console.log(`DEBUG:note:`, note)
-
-			saveNote(note)
-			history.back()
-		})
+		if (response.ok) {
+			console.log(`response ok`)
+			window.location.href = `/`
+		} else {
+			console.error(`Error:`, response)
+		}
 	})
 </script>
