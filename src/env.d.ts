@@ -5,7 +5,7 @@
 interface Note {
 	id: string
 	title: string
-	content: string
+	content?: string
 	description?: string
 	reminders?: string
 	attachments?: string[]

@@ -1,8 +1,10 @@
 ---
+import { db, Notes } from 'astro:db'
 import SearchIcon from '@/icons/search.astro'
 import Counter from '@/components/Counter.astro'
 
-import { notes } from '@/data/notes'
+const notes = await db.select().from(Notes)
+
 const totalEntries = notes.length
 const thisMonth = notes.filter((entry) => {
 	const created = new Date(entry.createdAt)
@@ -11,8 +13,8 @@ const thisMonth = notes.filter((entry) => {
 })
 ---
 
-<section class="py-2 rounded-b-xl w-full flex flex-col">
-	<div class="flex items-end justify-around mb-4">
+<section class="rounded-b-xl w-full flex flex-col">
+	<div class="flex items-end justify-around">
 		<Counter
 			text="Entradas"
 			number={totalEntries}
@@ -26,7 +28,7 @@ const thisMonth = notes.filter((entry) => {
 			number={thisMonth.length}
 		/>
 	</div>
-	<div class="flex items-center px-4 p-6 relative justify-center">
+	<div class="flex items-center px-4 pt-4 relative justify-center">
 		<input
 			class="peer w-full h-10 focus:outline-none pl-10 border-opacity-50 border-y
       bg-background border-primary text-primary placeholder:text-secondary

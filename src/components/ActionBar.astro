@@ -6,17 +6,18 @@ import BackIcon from '@/icons/back.astro'
 
 interface Props {
 	actions?: boolean
+	back?: boolean
 }
 
-const { actions = false } = Astro.props
+const { actions = false, back = true } = Astro.props
 ---
 
 <nav
-	class="flex w-full items-center justify-between py-6 ps-2 pe-8 text-lg
-	text-accent"
+	class="flex w-full items-center justify-between ps-2 pe-8 text-lg
+	text-accent pt-2"
 >
-	<ul class="p-2">
-		<button id="back-btn">
+	<ul class="p-1">
+		<button id="back-btn" class="flex">
 			<BackIcon class="size-6 font-thin" />
 		</button>
 	</ul>

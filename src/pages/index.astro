@@ -7,21 +7,10 @@ import Entries from '@/sections/Entries.astro'
 <Layout
 	title="Eira - Bitácora Médica"
 	bottomBar
+	back={false}
 >
 	<main class="w-full max-w-5xl">
 		<Search />
 		<Entries />
 	</main>
 </Layout>
-
-<style>
-	.test {
-		background: #042438;
-		primary: #5790ab;
-		secondary: #064469;
-		accent: #9ccddb;
-		disabled: #d0d7e1;
-		title: #a2e8dd;
-		formlabel: #7bf1a8;
-	}
-</style>

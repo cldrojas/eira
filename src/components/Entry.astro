@@ -11,13 +11,13 @@ interface Props {
 		id: string
 		type: entryTypes
 		title: string
-		description?: string
-		date?: Date
+		description?: string | null
+		date?: Date | null
 		place?: {
 			name: string
 			location: string
-		}
-		createdAt?: Date
+		} | null
+		createdAt?: Date | null
 	}
 }
 const { entry } = Astro.props

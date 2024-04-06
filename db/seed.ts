@@ -1,20 +1,20 @@
-import { Notes, db } from 'astro:db'
+import { Notes, db , NOW} from 'astro:db'
 
 const NOTES = [
 	{
-		id: '1',
-		title: 'Note 1',
+		id: 'first-note',
+		title: 'First Note',
 		description: 'Description 1',
 		content: 'Content 1',
-		createdAt: new Date(),
+		createdAt: new Date('2021-01-01'),
 		updatedAt: new Date(),
 	},
 	{
-		id: '2',
-		title: 'Note 2',
+		id: 'second-note',
+		title: 'Second Note',
 		description: 'Description 2',
 		content: 'Content 2',
-		createdAt: new Date(),
+		createdAt: new Date('2024-02-04'),
 		updatedAt: new Date(),
 	},
 ]

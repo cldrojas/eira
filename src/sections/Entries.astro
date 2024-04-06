@@ -1,6 +1,6 @@
 ---
-import { notes } from '@/data/notes'
-
+import { db, Notes } from 'astro:db'
+const notes = await db.select().from(Notes)
 import Entry from '@/components/Entry.astro'
 import { entryTypes } from '@/data/types'
 

@@ -1,24 +1,23 @@
 ---
-import { db, Notes, Todos } from 'astro:db'
+import { db, Notes, Todos, eq } from 'astro:db'
 
 import Layout from '@/layouts/Layout.astro'
 import FormInput from '@/components/FormInput.astro'
 import { toLocal } from '@/utils/date'
-import { eq } from 'astro:db'
 
 const { id } = Astro.params
-if (!id) return
+if (!id) {
+	throw new Error('Note id is required')
+}
 
-const notes = await db.select().from(Notes).where(eq(Notes.id, id))
-if (!notes) return
+const res = await db.select().from(Notes).where(eq(Notes.id, id))
+ 
+const [note] = res
 
 const todos = await db
 	.select({ title: Todos.title, completed: Todos.completed })
 	.from(Todos)
 	.where(eq(Todos.noteId, id))
-
-const note = notes.find((note) => note.id === id)
-if (!note) return
 
 const edit = toLocal(new Date(), { timeStyle: 'short' })
 ---
@@ -72,32 +71,3 @@ const edit = toLocal(new Date(), { timeStyle: 'short' })
 		</form>
 	</main>
 </Layout>
-
-<script>
-	import { saveNote } from '@/data/notes'
-	const form = document.querySelector('form')
-	const $backbtn = document.querySelector('#back')
-
-	$backbtn?.addEventListener('click', async () => {
-		if (!form) return
-		const formData = new FormData(form)
-		console.log(`DEBUG:fullFormData:`, formData)
-		const data = Object.fromEntries(formData)
-		console.log(`DEBUG:formData:`, data)
-		const newNote: Note = {
-			id: '',
-			title: data.title.toString(),
-			description: data.description.toString(),
-			content: data.content.toString(),
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		}
-		console.log(`DEBUG:newNote:`, newNote)
-		const noteId = await saveNote(newNote)
-
-		if (!noteId) {
-			throw new Error('Error saving note')
-		}
-		window.location.assign('/')
-	})
-</script>

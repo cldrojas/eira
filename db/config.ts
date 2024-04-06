@@ -13,8 +13,8 @@ const Notes = {
 	columns: {
 		id: column.text({ primaryKey: true }),
 		title: column.text(),
-		description: column.text(),
-		content: column.text(),
+		description: column.text({optional: true}),
+		content: column.text({optional: true}),
 		createdAt: column.date(),
 		updatedAt: column.date(),
 	},
