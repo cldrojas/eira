@@ -5,22 +5,27 @@ import TodoIcon from '@/icons/todo.astro'
 import BackIcon from '@/icons/back.astro'
 
 interface Props {
-	actions?: boolean
+	actions?: string[]
 	back?: boolean
+	backAction?: string
 }
 
-const { actions = false, back = true } = Astro.props
+const { actions, backAction, back = true } = Astro.props
 ---
 
 <nav
 	class="flex w-full items-center justify-between ps-2 pe-8 text-lg
 	text-accent pt-2"
 >
-	<ul class="p-1">
-		<button id="back-btn" class="flex">
+	{back && <ul class="p-1">
+		<button
+			id="back-btn"
+			class="flex"
+			onclick={backAction || 'history.back()'}
+		>
 			<BackIcon class="size-6 font-thin" />
 		</button>
-	</ul>
+	</ul>}
 	{
 		actions && (
 			<ul class="flex items-center gap-2">

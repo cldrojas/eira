@@ -1,0 +1,11 @@
+---
+import { getSession } from 'auth-astro/server'
+import { signIn, signOut } from 'auth-astro/client'
+const session = await getSession(Astro.request)
+const buttonProps = {
+	text: session ? 'Cerrar sesión' : 'Iniciar sesión',
+	id: session ? 'login' : 'logout',
+}
+---
+
+<button id={buttonProps.id}>{buttonProps.text}</button>

@@ -5,12 +5,12 @@ import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
 	title: string
-	actionBar?: boolean
+	actions?: string[]
 	back?: boolean
 	bottomBar?: boolean
 }
 
-const { title, actionBar = false, bottomBar = false, back } = Astro.props
+const { title, actions: actions, bottomBar = false, back } = Astro.props
 ---
 
 <!doctype html>
@@ -42,14 +42,7 @@ const { title, actionBar = false, bottomBar = false, back } = Astro.props
 	</head>
 	<body class="flex justify-center min-h-svh">
 		<div class="relative w-screen max-w-5xl flex flex-col items-center">
-			{
-				actionBar && (
-					<ActionBar
-						actions={actionBar}
-						back={back}
-					/>
-				)
-			}
+			<ActionBar back={back} />
 			<slot />
 			{bottomBar && <BottomBar />}
 		</div>
