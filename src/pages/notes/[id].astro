@@ -11,7 +11,7 @@ if (!id) {
 }
 
 const res = await db.select().from(Notes).where(eq(Notes.id, id))
- 
+
 const [note] = res
 
 const todos = await db
@@ -22,10 +22,7 @@ const todos = await db
 const edit = toLocal(new Date(), { timeStyle: 'short' })
 ---
 
-<Layout
-	title={note.title}
-	actionBar
->
+<Layout title={note.title}>
 	<main class="w-full max-w-5xl mt-2 text-primary text-lg">
 		<form
 			method="POST"
