@@ -1,4 +1,4 @@
-import { Notes, db , NOW} from 'astro:db'
+import { Notes, db } from 'astro:db'
 
 const NOTES = [
 	{

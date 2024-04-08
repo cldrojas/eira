@@ -1,26 +1,27 @@
 {
-  "name": "eira",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/cloudflare": "^10.0.2",
-    "@astrojs/db": "^0.10.1",
-    "@astrojs/node": "^8.2.5",
-    "@astrojs/tailwind": "^5.1.0",
-    "@auth/core": "^0.18.6",
-    "@midudev/tailwind-animations": "^0.0.7",
-    "astro": "^4.5.16",
-    "auth-astro": "^4.1.1",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4"
-  },
-  "extends": "standard"
+	"name": "eira",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^10.0.2",
+		"@astrojs/db": "^0.10.1",
+		"astro": "^4.5.16",
+		"auth-astro": "^4.1.1"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.5.10",
+		"@astrojs/tailwind": "^5.1.0",
+		"@auth/core": "^0.28.2",
+		"@midudev/tailwind-animations": "^0.0.7",
+		"tailwindcss": "^3.4.3",
+		"typescript": "^5.4.4"
+	},
+	"extends": "standard"
 }

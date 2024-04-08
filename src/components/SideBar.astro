@@ -1,0 +1,72 @@
+---
+import UserIcon from '@/icons/user.astro'
+import CogIcon from '@/icons/cog.astro'
+import type { User } from '@auth/core/types'
+
+interface Props {
+	user?: User
+}
+
+const { user } = Astro.props
+---
+
+<section class="absolute top-0 left-0 h-full">
+	<input
+		class="size-8 absolute z-20 peer"
+		type="checkbox"
+		name="toggle"
+		id="toggle"
+		checked
+	/>
+	<aside
+		class="absolute top-0 left-0 z-10
+		flex flex-col items-start justify-center
+		h-full px-4
+		transition-transform duration-300
+		-translate-x-full rounded-r-lg
+		drop-shadow-xl bg-background text-accent
+		peer-checked:translate-x-0 peer-checked:shadow-lg"
+	>
+		<header class="">
+			{
+				user ? (
+					<a
+						href={`/profile`}
+						class="flex items-center justify-center my-4 gap-2"
+					>
+						<img
+							src={user.image}
+							alt={`Avatar del usuario ${user.name}`}
+						/>
+						<div>
+							<h1 class="text-">{user.name}</h1>
+							<p class="text-xs">{user.email}</p>
+						</div>
+					</a>
+				) : (
+					<a
+						href="/profile"
+						class="flex items-center justify-center my-4 gap-2 border border-white px-4"
+					>
+						<UserIcon class="size-10" />
+						<div>
+							<h1 class="text-">userName</h1>
+							<p class="text-xs">userEmail</p>
+						</div>
+					</a>
+				)
+			}
+		</header>
+
+		<ul class="flex flex-col h-full ms-2 mt-2 gap-2">
+			<li>Notas</li>
+			<li>Recordatorios</li>
+		</ul>
+		<footer class="p-2 mb-2">
+			<button class="flex items-center w-full gap-2">
+				<CogIcon class="size-5" />
+				Configuraciones
+			</button>
+		</footer>
+	</aside>
+</section>
