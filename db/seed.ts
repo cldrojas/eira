@@ -1,4 +1,4 @@
-import { Notes, db } from 'astro:db'
+// import { Notes, db } from 'astro:db'
 
 const NOTES = [
 	{
@@ -31,7 +31,7 @@ export default async function seed() {
 			updatedAt,
 		})
 	)
-	await db.insert(Notes).values(notes)
+	// await db.insert(Notes).values(notes)
 	// const teams = NOTES.flatMap(({ boxers, teams }) => teams ?? boxers).map((id) => ({ id }))
 	// await db.insert(VoteSelections).values(teams)
 }

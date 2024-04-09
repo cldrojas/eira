@@ -1,12 +1,12 @@
 ---
 import ActionBar from '@/components/ActionBar.astro'
-import SideBar from '@/components/SideBar.astro'
+// import SideBar from '@/components/SideBar.astro'
 import BottomBar from '@/components/BottomBar.astro'
 import { ViewTransitions } from 'astro:transitions'
 
-import { getSession } from 'auth-astro/server'
+// import { getSession } from 'auth-astro/server'
 
-const session = await getSession(Astro.request)
+// const session = await getSession(Astro.request)
 
 interface Props {
 	title: string
@@ -15,7 +15,7 @@ interface Props {
 	bottomBar?: boolean
 }
 
-const user = session?.user
+// const user = session?.user
 
 const { title, actions: actions, bottomBar = false, back } = Astro.props
 ---
@@ -53,7 +53,7 @@ const { title, actions: actions, bottomBar = false, back } = Astro.props
 				back={back}
 				actions={actions}
 			/>
-			<SideBar user={user} />
+			<!-- <SideBar user={user} /> -->
 			<slot />
 			{bottomBar && <BottomBar />}
 		</div>

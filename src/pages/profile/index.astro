@@ -1,25 +1,25 @@
 ---
-import Login from './login.astro'
-import Logout from './logout.astro'
+// import Login from './login.astro'
+// import Logout from './logout.astro'
 import Layout from '@/layouts/Layout.astro'
-import type { User } from '@auth/core/types'
-import { getSession } from 'auth-astro/server'
+// import type { User } from '@auth/core/types'
+// import { getSession } from 'auth-astro/server'
 
-const session = await getSession(Astro.request)
-const user = session?.user as User
+// const session = await getSession(Astro.request)
+// const user = session?.user as User
 ---
 
 <Layout title="Perfil de usuario">
 	<main class="text-white">
-		{session == null ? <Login /> : <Logout user={user} />}
+		<!-- {session == null ? <Login /> : <Logout user={user} />} -->
 	</main>
 
 	<script>
-		const { signIn, signOut } = await import('auth-astro/client')
-		const $login = document.querySelector('#login') as HTMLButtonElement
-		const $logout = document.querySelector('#logout') as HTMLButtonElement
+		// const { signIn, signOut } = await import('auth-astro/client')
+		// const $login = document.querySelector('#login') as HTMLButtonElement
+		// const $logout = document.querySelector('#logout') as HTMLButtonElement
 
-		if ($logout) $logout.onclick = () => signOut()
-		if ($login) $login.onclick = () => signIn('google')
+		// if ($logout) $logout.onclick = () => signOut()
+		// if ($login) $login.onclick = () => signIn('google')
 	</script>
 </Layout>

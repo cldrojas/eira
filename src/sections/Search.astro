@@ -1,23 +1,23 @@
 ---
-import { db, Notes } from 'astro:db'
+// import { db, Notes } from 'astro:db'
 import SearchIcon from '@/icons/search.astro'
 import Counter from '@/components/Counter.astro'
 
-const notes = await db.select().from(Notes)
+// const notes = await db.select().from(Notes)
 
-const totalEntries = notes.length
-const thisMonth = notes.filter((entry) => {
-	const created = new Date(entry.createdAt)
-	const today = new Date()
-	return created.getMonth() === today.getMonth()
-})
+// const totalEntries = notes.length
+// const thisMonth = notes.filter((entry) => {
+// 	const created = new Date(entry.createdAt)
+// 	const today = new Date()
+// 	return created.getMonth() === today.getMonth()
+// })
 ---
 
 <section class="rounded-b-xl w-full flex flex-col">
 	<div class="flex items-end justify-around">
 		<Counter
 			text="Entradas"
-			number={totalEntries}
+			number={'totalEntries'}
 		/>
 		<div class=`flex flex-col items-center mt-4`>
 			<h2 class="text-2xl font-bold text-accent">Eira</h2>
@@ -25,7 +25,7 @@ const thisMonth = notes.filter((entry) => {
 		</div>
 		<Counter
 			text="Este mes"
-			number={thisMonth.length}
+			number={'thisMonth.length'}
 		/>
 	</div>
 	<div class="flex items-center px-4 pt-4 relative justify-center">
