@@ -5,8 +5,8 @@ import tailwind from '@astrojs/tailwind'
 
 // https://astro.build/config
 export default defineConfig({
-	compressHTML: true,
-	prefetch: true,
+	// compressHTML: true,
+	// prefetch: true,
 	devToolbar: {
 		enabled: false,
 	},
