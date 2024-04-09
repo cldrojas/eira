@@ -1,7 +1,7 @@
 {
 	"name": "eira",
 	"type": "module",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
@@ -10,7 +10,7 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^10.0.2",
+		"@astrojs/vercel": "^7.5.2",
 		"astro": "^4.5.16"
 	},
 	"devDependencies": {
@@ -18,8 +18,6 @@
 		"@astrojs/tailwind": "^5.1.0",
 		"@midudev/tailwind-animations": "^0.0.7",
 		"tailwindcss": "^3.4.3",
-		"typescript": "^5.4.4",
-		"wrangler": "^3.48.0"
-	},
-	"extends": "standard"
+		"typescript": "^5.4.4"
+	}
 }
