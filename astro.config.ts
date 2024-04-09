@@ -5,6 +5,8 @@ import tailwind from '@astrojs/tailwind';
 
 import vercel from "@astrojs/vercel/serverless";
 
+import auth from "auth-astro";
+
 // https://astro.build/config
 export default defineConfig({
   // compressHTML: true,
@@ -12,9 +14,10 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-  integrations: [tailwind()],
+  integrations: [tailwind(), auth()],
   output: 'server'
   // adapter: cloudflare(),
   ,
+
   adapter: vercel()
 });
