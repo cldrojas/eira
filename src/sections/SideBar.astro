@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { user } = Astro.props
-export const prerender = true;
+export const prerender = true
 ---
 
 <section class="absolute top-0 left-0 h-full">
@@ -17,39 +17,41 @@ export const prerender = true;
 		type="checkbox"
 		name="toggle"
 		id="toggle"
+		checked
 	/>
 	<aside
 		class="absolute top-0 z-10
 		flex flex-col items-start justify-center
-		h-full px-4 md:border-r md:border-opacity-20
+		h-full px-4 md:border-r md:border-opacity-20 pt-9
 		transition-transform duration-300
 		-translate-x-full rounded-r-lg md:rounded-none
 		drop-shadow-xl md:drop-shadow-none md:shadow-none md:border-accent bg-background text-accent
 		peer-checked:translate-x-0 peer-checked:shadow-lg"
 	>
-		<link class="" />
 		{
 			user ? (
-				<a
-					href={`/profile?id=${user.id}`}
-					class="flex items-center justify-center my-4 gap-2"
-				>
-					<img
-						class="size-10 rounded-full"
-						src={user.image}
-						alt={`Avatar del usuario ${user.name}`}
-					/>
-					<div>
-						<h1 class="text-">{user.name}</h1>
-						<p class="text-xs">{user.email}</p>
-					</div>
-				</a>
+				<>
+					<a
+						href={`/profile?id=${user.id}`}
+						class="flex items-center justify-center mt-4 gap-2"
+					>
+						<img
+							class="size-8 rounded-full"
+							src={user.image}
+							alt={`Avatar del usuario ${user.name}`}
+						/>
+						<div>
+							<h1 class="text-">{user.name}</h1>
+							<p class="text-xs">@{user.email?.split('@').at(0)}</p>
+						</div>
+					</a>
 					<button
-						id="login"
-						class="text-xs text-blue-300"
+						id="logout"
+						class="text-xs text-blue-300 mt-1"
 					>
 						Cerrar sesión
 					</button>
+				</>
 			) : (
 				<info class="flex items-center justify-center my-4 gap-2 px-4">
 					<UserIcon class="size-10" />
@@ -65,33 +67,32 @@ export const prerender = true;
 				</info>
 			)
 		}
+		<ul class="flex flex-col h-full ms-2 mt-2 gap-2">
+			<li><a href="/">Notas</a></li>
+			<li><a href="/reminders">Recordatorios</a></li>
+		</ul>
+		<footer class="p-2 mb-2">
+			<button class="flex items-center w-full gap-2">
+				<CogIcon class="size-5" />
+				Configuraciones
+			</button>
+		</footer>
 	</aside>
-
-	<ul class="flex flex-col h-full ms-2 mt-2 gap-2">
-		<li>Notas</li>
-		<li>Recordatorios</li>
-	</ul>
-	<footer class="p-2 mb-2">
-		<button class="flex items-center w-full gap-2">
-			<CogIcon class="size-5" />
-			Configuraciones
-		</button>
-	</footer>
 </section>
 
 <script>
-	const { signIn, signOut} = await import('auth-astro/client')
+	const { signIn, signOut } = await import('auth-astro/client')
 	const login = document.getElementById('login')
 	const logout = document.getElementById('logout')
-	
-	if (login){
-			login.addEventListener('click', async () => {
+
+	if (login) {
+		login.addEventListener('click', async () => {
 			await signIn('google')
 		})
 	}
 
-	if (logout){
-			logout.addEventListener('click', async () => {
+	if (logout) {
+		logout.addEventListener('click', async () => {
 			await signOut()
 		})
 	}
