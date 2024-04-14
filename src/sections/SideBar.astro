@@ -5,10 +5,9 @@ import type { User } from '@auth/core/types'
 
 interface Props {
 	user?: User
-	logout?: () => void
 }
 
-const { user, logout} = Astro.props
+const { user } = Astro.props
 export const prerender = true;
 ---
 
@@ -36,6 +35,7 @@ export const prerender = true;
 					class="flex items-center justify-center my-4 gap-2"
 				>
 					<img
+						class="size-10 rounded-full"
 						src={user.image}
 						alt={`Avatar del usuario ${user.name}`}
 					/>
@@ -44,6 +44,12 @@ export const prerender = true;
 						<p class="text-xs">{user.email}</p>
 					</div>
 				</a>
+					<button
+						id="login"
+						class="text-xs text-blue-300"
+					>
+						Cerrar sesión
+					</button>
 			) : (
 				<info class="flex items-center justify-center my-4 gap-2 px-4">
 					<UserIcon class="size-10" />
@@ -74,13 +80,19 @@ export const prerender = true;
 </section>
 
 <script>
-	const { signIn } = await import('auth-astro/client')
+	const { signIn, signOut} = await import('auth-astro/client')
 	const login = document.getElementById('login')
+	const logout = document.getElementById('logout')
 	
 	if (login){
 			login.addEventListener('click', async () => {
 			await signIn('google')
 		})
 	}
-	
+
+	if (logout){
+			logout.addEventListener('click', async () => {
+			await signOut()
+		})
+	}
 </script>
