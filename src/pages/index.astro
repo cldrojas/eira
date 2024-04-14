@@ -2,6 +2,15 @@
 import Layout from '@/layouts/Layout.astro'
 import Search from '@/sections/Search.astro'
 import Entries from '@/sections/Entries.astro'
+import SideBar from '@/sections/SideBar.astro'
+
+import { getSession } from 'auth-astro/server'
+
+const sesion = await getSession(Astro.request)
+const user = sesion?.user
+const logout = () => {
+	console.log('Logout')
+}
 ---
 
 <Layout
@@ -13,4 +22,5 @@ import Entries from '@/sections/Entries.astro'
 		<Search />
 		<Entries />
 	</main>
+	<SideBar user={user} />
 </Layout>
