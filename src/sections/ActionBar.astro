@@ -21,7 +21,7 @@ const { actions, backAction, back = true } = Astro.props
 		<button
 			id="back-btn"
 			class="flex"
-			onclick={backAction || 'history.back()'}
+			onclick={backAction || 'history.replace("/")'}
 		>
 			<BackIcon class="size-6 font-thin" />
 		</button>
