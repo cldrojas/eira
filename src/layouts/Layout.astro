@@ -1,5 +1,5 @@
 ---
-import ActionBar from '@/sections/ActionBar.astro'
+import ActionBar from '@/sections/ActionBar/index.astro'
 // import SideBar from '@/components/SideBar.astro'
 import BottomBar from '@/components/BottomBar.astro'
 import { ViewTransitions } from 'astro:transitions'
@@ -12,12 +12,19 @@ interface Props {
 	title: string
 	actions?: string[]
 	back?: boolean
+	backAction?: string
 	bottomBar?: boolean
 }
 
 // const user = session?.user
 
-const { title, actions: actions, bottomBar = false, back } = Astro.props
+const {
+	title,
+	actions: actions,
+	backAction,
+	bottomBar = false,
+	back,
+} = Astro.props
 ---
 
 <!doctype html>
@@ -51,6 +58,7 @@ const { title, actions: actions, bottomBar = false, back } = Astro.props
 		<div class="relative w-screen max-w-5xl flex flex-col items-center">
 			<ActionBar
 				back={back}
+				backAction={backAction}
 				actions={actions}
 			/>
 			<!-- <SideBar user={user} /> -->
