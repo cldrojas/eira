@@ -11,21 +11,26 @@ interface Props {
 }
 
 const { actions, backAction, back = true } = Astro.props
+console.log(`DEBUG:ActionBar:`, Astro.props)
 ---
 
 <nav
 	class="flex w-full items-center justify-between ps-2 pe-8 text-lg
 	text-accent pt-2"
 >
-	{back && <ul class="p-1">
-		<button
-			id="back-btn"
-			class="flex"
-			onclick={backAction || 'history.replace("/")'}
-		>
-			<BackIcon class="size-6 font-thin" />
-		</button>
-	</ul>}
+	{
+		(back || backAction) && (
+			<ul class="p-1">
+				<button
+					id="back-btn"
+					class="flex"
+					onclick={backAction || 'console.log("back button clicked")'}
+				>
+					<BackIcon class="size-6 font-thin" />
+				</button>
+			</ul>
+		)
+	}
 	{
 		actions && (
 			<ul class="flex items-center gap-2">

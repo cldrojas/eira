@@ -1,0 +1,26 @@
+---
+interface Props {
+  text: string;
+  onClick?: (e: MouseEvent) => void;
+  className?: string;
+}
+
+const {text, onClick, className} = Astro.props
+
+const defaultOnClick = (e: MouseEvent) => {
+  console.log('defaultOnClick', e);
+};
+---
+
+<button class:list={[
+  className,
+  'bg-blue-500',
+]}>
+  {text}
+</button>
+
+<script>
+  const {onClick} = Astro.props
+
+  onClick()
+</script>

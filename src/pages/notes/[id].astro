@@ -10,9 +10,7 @@ if (!id) {
 	throw new Error('Note id is required')
 }
 
-const res = await db.select().from(Notes).where(eq(Notes.id, id))
-
-const [note] = res
+const [note] = await db.select().from(Notes).where(eq(Notes.id, id))
 
 const todos = await db
 	.select({ title: Todos.title, completed: Todos.completed })
@@ -26,13 +24,9 @@ const edit = toLocal(new Date(), { timeStyle: 'short' })
 <Layout
 	title={'note.title'}
 	back
-	backAction="window.location.href = '/'"
 >
 	<main class="w-full max-w-5xl mt-2 text-primary text-lg">
-		<form
-			method="POST"
-			class="flex flex-col w-full bg-background rounded-lg p-6"
-		>
+		<form class="flex flex-col w-full bg-background rounded-lg p-6">
 			<FormInput
 				class="text-2xl font-bold text-accent"
 				name="title"
@@ -73,3 +67,41 @@ const edit = toLocal(new Date(), { timeStyle: 'short' })
 		</form>
 	</main>
 </Layout>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const back = document.querySelector(`#back-btn`)
+		const form = document.querySelector(`form`) as HTMLFormElement
+
+		const saveNote = async () => {
+			const formData = new FormData(form)
+			const data = Object.entries(formData)
+
+			console.log(`DEBUG:updaating data:`, data)
+			
+			// const response = await window.fetch('/api/notes', {
+			// 	method: 'PUT',
+			// 	body: JSON.stringify(data),
+			// 	headers: {
+			// 		'Content-Type': `application/json`,
+			// 	},
+			// })
+			// if (response.ok) {
+			// 	console.log(`response ok`)
+			// 	window.location.href = `/`
+			// } else {
+			// 	console.error(`Error:`, response)
+			// }
+		}
+
+		back?.addEventListener(`click`, async () => {
+			await saveNote()
+			window.history.back()
+		})
+
+		form?.addEventListener(`submit`, async (e) => {
+			e.preventDefault()
+			await saveNote()
+		})
+	})
+</script>
