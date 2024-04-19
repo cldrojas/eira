@@ -1,6 +1,16 @@
 ---
-import { db, Notes } from 'astro:db'
-const notes = await db.select().from(Notes)
+import { db, Notes, eq } from 'astro:db'
+import { getSession } from 'auth-astro/server'
+const session = await getSession(Astro.request)
+if (!session) {
+	return { status: 401, headers: { 'WWW-Authenticate': 'Bearer' } }
+}
+const user = session.user
+if (!user) {
+	return { status: 401, headers: { 'WWW-Authenticate': 'Bearer' } }
+}
+
+const notes = await db.select().from(Notes).where(eq(Notes.userId, user?.id))
 import Entry from '@/components/Entry.astro'
 import { entryTypes } from '@/data/types'
 

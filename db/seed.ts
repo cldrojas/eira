@@ -8,6 +8,7 @@ const NOTES = [
     content: "Content 1",
     createdAt: new Date("2021-01-01"),
     updatedAt: new Date(),
+    userId: "admin",
   },
   {
     id: "second-note",
@@ -16,17 +17,19 @@ const NOTES = [
     content: "Content 2",
     createdAt: new Date("2024-02-04"),
     updatedAt: new Date(),
+    userId: "admin",
   },
 ];
 
 // https://astro.build/db/seed
 export default async function seed() {
   const notes = NOTES.map(
-    ({ id, title, description, content, createdAt, updatedAt }) => ({
+    ({ id, title, description, content, userId, createdAt, updatedAt }) => ({
       id,
       title,
       description: description || "",
       content,
+      userId,
       createdAt,
       updatedAt,
     })
