@@ -84,18 +84,18 @@ const { id, type, title, createdAt, date, place, description } = entry
 </a>
 
 <script>
-	const $entries = document.querySelectorAll('article')
-	$entries.forEach(($entry) => {
-		$entry.addEventListener('mousemove', (e) => {
-			const { x } = e
-
-			const { left, width } = $entry.getBoundingClientRect()
-			const horizontal = ((x - left) / width) * 100
-
-			$entry.style.setProperty('--bg-horizontal', `${horizontal.toFixed()}%`)
-		})
-		$entry.addEventListener('mouseleave', () => {
-			$entry.style.setProperty('--bg-horizontal', null)
+	document.addEventListener('astro:page-load', () => {
+		const $entries = document.querySelectorAll('article')
+		$entries.forEach(($entry) => {
+			$entry.addEventListener('mousemove', (e) => {
+				const { x } = e
+				const { left, width } = $entry.getBoundingClientRect()
+				const horizontal = ((x - left) / width) * 100
+				$entry.style.setProperty('--bg-horizontal', `${horizontal.toFixed()}%`)
+			})
+			$entry.addEventListener('mouseleave', () => {
+				$entry.style.setProperty('--bg-horizontal', null)
+			})
 		})
 	})
 </script>

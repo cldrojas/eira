@@ -21,13 +21,13 @@ console.log(`DEBUG:ActionBar:`, Astro.props)
 	{
 		(back || backAction) && (
 			<ul class="p-1">
-				<button
+				<a href="/"
 					id="back-btn"
 					class="flex"
 					onclick={backAction || 'console.log("back button clicked")'}
 				>
 					<BackIcon class="size-6 font-thin" />
-				</button>
+				</a>
 			</ul>
 		)
 	}

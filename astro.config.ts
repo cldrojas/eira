@@ -6,6 +6,7 @@ import db from "@astrojs/db";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://unchat.online',
   compressHTML: true,
   prefetch: true,
   devToolbar: {

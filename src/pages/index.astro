@@ -8,9 +8,6 @@ import { getSession } from 'auth-astro/server'
 
 const sesion = await getSession(Astro.request)
 const user = sesion?.user
-const logout = () => {
-	console.log('Logout')
-}
 ---
 
 <Layout

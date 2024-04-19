@@ -1,8 +1,7 @@
 ---
-import ActionBar from '@/sections/ActionBar/index.astro'
-import SpeedInsights from '@vercel/speed-insights/astro'
-import BottomBar from '@/components/BottomBar.astro'
 import { ViewTransitions } from 'astro:transitions'
+import ActionBar from '@/sections/ActionBar/index.astro'
+import BottomBar from '@/components/BottomBar.astro'
 
 // import { getSession } from 'auth-astro/server'
 
@@ -61,10 +60,8 @@ const {
 				backAction={backAction}
 				actions={actions}
 			/>
-			<!-- <SideBar user={user} /> -->
 			<slot />
 			{bottomBar && <BottomBar />}
 		</div>
-		<SpeedInsights />
 	</body>
 </html>
