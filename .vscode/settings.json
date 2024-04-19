@@ -3,6 +3,7 @@
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
+	"editor.lightbulb.enabled": "off",
 	"prettier.semi": false,
 	"prettier.singleQuote": true,
 	"prettier.singleAttributePerLine": true,
