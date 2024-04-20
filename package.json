@@ -1,33 +1,28 @@
 {
-  "name": "eira",
-  "type": "module",
-  "version": "0.0.2",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev --remote",
-    "build": "astro check && astro build --remote",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/db": "^0.10.4",
-    "@astrojs/vercel": "^7.5.2",
-    "@auth/core": "^0.18.6",
-    "@vercel/speed-insights": "^1.0.10",
-    "astro": "^4.5.16",
-    "auth-astro": "^4.1.1"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/tailwind": "^5.1.0",
-    "@midudev/tailwind-animations": "^0.0.7",
-    "eslint": "^9.1.0",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "standard"
-    ]
-  }
+	"name": "eira",
+	"type": "module",
+	"version": "0.0.2",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev --remote",
+		"build": "astro check && astro build --remote",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/db": "^0.10.4",
+		"@astrojs/vercel": "^7.5.2",
+		"@auth/core": "^0.18.6",
+		"@vercel/speed-insights": "^1.0.10",
+		"astro": "^4.5.16",
+		"auth-astro": "^4.1.1"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.5.10",
+		"@astrojs/tailwind": "^5.1.0",
+		"@midudev/tailwind-animations": "^0.0.7",
+		"eslint": "^9.1.0",
+		"tailwindcss": "^3.4.3",
+		"typescript": "^5.4.4"
+	}
 }
