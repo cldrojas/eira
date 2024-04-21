@@ -2,7 +2,7 @@
 import Layout from '@/layouts/Layout.astro'
 import Search from '@/sections/Search.astro'
 import Entries from '@/sections/Entries.astro'
-import SideBar from '@/sections/SideBar.astro'
+import SideBar from '@/sections/Sidebar/index.astro'
 
 import { getSession } from 'auth-astro/server'
 
@@ -21,3 +21,9 @@ const user = sesion?.user
 	</main>
 	<SideBar user={user} />
 </Layout>
+
+<style>
+	:global(.link) {
+		color: rgb(147 197 253)
+	}
+</style>

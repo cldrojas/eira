@@ -1,0 +1,101 @@
+---
+import type { User } from '@auth/core/types'
+
+interface Props {
+	user?: User
+}
+
+const { user } = Astro.props
+
+import UserIcon from '@/icons/user.astro'
+import CogIcon from '@/icons/cog.astro'
+import ListItem from './ListItem.astro'
+---
+
+<section class="absolute top-0 left-0 h-full bg-red-500">
+	<input
+		class="md:hidden size-8 absolute z-20 peer"
+		type="checkbox"
+		name="toggle"
+		id="toggle"
+		checked
+	/>
+	<aside
+		class="absolute top-0 z-10
+		flex flex-col items-start justify-center
+		h-full px-4 pt-9 md:border-r md:border-opacity-20
+		transition-transform duration-300 animate-ease
+		-translate-x-full rounded-r-lg md:rounded-none
+		drop-shadow-xl md:drop-shadow-none md:shadow-none md:border-accent bg-green-700 text-accent
+		peer-checked:translate-x-0 peer-checked:shadow-lg"
+	>
+		<header>
+			{
+				user ? (
+					<>
+						<a
+							href={`/profile?id=${user.id}`}
+							class="flex items-center justify-center mt-4 gap-2"
+						>
+							<img
+								class="size-8 rounded-full"
+								src={user.image}
+								alt={`Avatar del usuario ${user.name}`}
+							/>
+							<div>
+								<h1 class="text-">{user.name}</h1>
+								<p class="text-xs">@{user.email?.split('@').at(0)}</p>
+							</div>
+						</a>
+						<button
+							id="logout"
+							class="text-xs link my-2 "
+						>
+							Cerrar sesión
+						</button>
+					</>
+				) : (
+					<info class="flex items-center justify-center my-4 gap-2 px-4">
+						<UserIcon class="size-10" />
+						<div>
+							<h1 class="text-">userName</h1>
+							<button
+								id="login"
+								class="text-xs link"
+							>
+								Iniciar sesión
+							</button>
+						</div>
+					</info>
+				)
+			}
+		</header>
+		<divider class="border border-accent w-full border-b-0 rounded-full">
+		</divider>
+		<ul class="flex flex-col h-full ms-2 mt-4 gap-2">
+			<ListItem path="/" title="Notas" />
+			<ListItem path="/reminders" title="Recordatorios" blocked={!user}/>
+			<ListItem path="/appointments" title="Citas" blocked={!user}/>
+		</ul>
+		<footer class="p-2 mb-2">
+			<button class="flex items-center w-full gap-2">
+				<CogIcon class="size-5" />
+				Configuraciones
+			</button>
+		</footer>
+	</aside>
+</section>
+
+<script>
+	const { signIn, signOut } = await import('auth-astro/client')
+	const login = document.querySelector('#login')
+	const logout = document.querySelector('#logout')
+
+	login?.addEventListener('click', async () => {
+		await signIn('google')
+	})
+
+	logout?.addEventListener('click', async () => {
+		await signOut()
+	})
+</script>
