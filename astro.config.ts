@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel/serverless';
 import auth from 'auth-astro';
 import db from "@astrojs/db";
+
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,5 +15,10 @@ export default defineConfig({
   },
   integrations: [tailwind(), auth(), db()],
   output: 'server',
-  adapter: vercel()
+  adapter: cloudflare(),
+  vite: {
+    ssr: {
+      external: ['node:path'],
+    },
+  },
 });
