@@ -6,11 +6,16 @@ import auth from "auth-astro";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true
-    }
-  }),
-  integrations: [tailwind(), auth()]
-});
+	output: 'server',
+	integrations: [tailwind(), auth()],
+	adapter: cloudflare({
+		platformProxy: {
+			enabled: true,
+		},
+	}),
+	vite: {
+		ssr: {
+			external: ['node:path'],
+		},
+	},
+})
