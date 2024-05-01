@@ -1,18 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getSession } from 'auth-astro/server'
+// import { getSession } from 'auth-astro/server'
 
-const session = await getSession(Astro.request)
-const user = session?.user
+// const session = await getSession(Astro.request)
+// const user = session?.user
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		{
-			user ? (
+			false ? (
 				<>
 					<h1>
-						Welcome back, <span class="text-gradient">{user.name}</span>!
+						Welcome back, <span class="text-gradient">{'user?.name'}</span>!
 					</h1>
 					<small
 						id="logout"
