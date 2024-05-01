@@ -1,0 +1,6 @@
+name = "eira"
+
+[env.production]
+GOOGLE_CLIENT_ID = "966092156923-58d4bjhoao93fh6el595r0lmrinah5mr.apps.googleusercontent.com"
+AUTH_TRUST_HOST = "true"
+NODE_VERSION = "20"
