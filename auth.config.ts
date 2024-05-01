@@ -1,6 +1,9 @@
 import Google from '@auth/core/providers/google'
 import { defineConfig } from 'auth-astro'
 
+console.log('vars', import.meta.env)
+console.log('process', process.env)
+
 export default defineConfig({
 	providers: [
 		Google({

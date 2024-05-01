@@ -6,7 +6,7 @@
 		"dev": "astro dev --host",
 		"start": "astro dev",
 		"build": "astro check && astro build",
-		"preview": "astro build && wrangler pages dev",
+		"preview": "astro build && wrangler pages dev ./dist",
 		"astro": "astro",
 		"deploy": "astro build && wrangler pages deploy",
 		"debug": "wrangler pages deployment tail --project-name eira",
