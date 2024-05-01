@@ -3,7 +3,6 @@ import cloudflare from '@astrojs/cloudflare'
 import tailwind from '@astrojs/tailwind'
 import auth from 'auth-astro'
 
-
 // https://astro.build/config
 export default defineConfig({
 	output: 'server',
@@ -12,8 +11,6 @@ export default defineConfig({
 		platformProxy: {
 			enabled: true,
 		},
-		mode: 'directory',
-		funtionPerRoute: true,
 	}),
 	vite: {
 		ssr: {
