@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config';
-import cloudflare from "@astrojs/cloudflare";
-import tailwind from "@astrojs/tailwind";
+import { defineConfig } from 'astro/config'
+import cloudflare from '@astrojs/cloudflare'
+import tailwind from '@astrojs/tailwind'
+import auth from 'auth-astro'
 
-import auth from "auth-astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,5 +17,6 @@ export default defineConfig({
 		ssr: {
 			external: ['node:path'],
 		},
+		mode: 'directory',
 	},
 })
