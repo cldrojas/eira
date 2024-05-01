@@ -12,11 +12,12 @@ export default defineConfig({
 		platformProxy: {
 			enabled: true,
 		},
+		mode: 'directory',
+		funtionPerRoute: true,
 	}),
 	vite: {
 		ssr: {
 			external: ['node:path'],
 		},
-		mode: 'directory',
 	},
 })
