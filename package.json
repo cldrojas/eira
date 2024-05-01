@@ -9,6 +9,7 @@
 		"preview": "astro build && wrangler pages dev",
 		"astro": "astro",
 		"deploy": "astro build && wrangler pages deploy",
+		"debug": "wrangler pages deployment tail --project-name eira",
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {

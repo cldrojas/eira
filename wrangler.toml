@@ -68,8 +68,9 @@ pages_build_output_dir = "./dist"
 
 ######## PREVIEW environment config ########
 
-# [env.preview.vars]
-# API_KEY = "xyz789"
+[env.preview.vars]
+GOOGLE_CLIENT_ID="966092156923-58d4bjhoao93fh6el595r0lmrinah5mr.apps.googleusercontent.com"
+
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
