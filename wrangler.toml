@@ -70,6 +70,7 @@ pages_build_output_dir = "./dist"
 
 [env.preview.vars]
 GOOGLE_CLIENT_ID="966092156923-58d4bjhoao93fh6el595r0lmrinah5mr.apps.googleusercontent.com"
+AUTH_TRUST_HOST=true
 
 
 # [[env.preview.kv_namespaces]]
