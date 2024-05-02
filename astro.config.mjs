@@ -11,6 +11,7 @@ export default defineConfig({
 		platformProxy: {
 			enabled: true,
 		},
+		mode: 'directory',
 	}),
 	vite: {
 		ssr: {
