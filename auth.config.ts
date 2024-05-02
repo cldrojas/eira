@@ -20,4 +20,6 @@ export default defineConfig({
 			},
 		}),
 	},
+	trustHost: true,
+	secret: import.meta.env.AUTH_SECRET,
 })
