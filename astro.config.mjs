@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config'
 import cloudflare from '@astrojs/cloudflare'
 import tailwind from '@astrojs/tailwind'
-import auth from 'auth-astro'
 
 // https://astro.build/config
 export default defineConfig({
 	output: 'server',
-	integrations: [tailwind(), auth()],
+	integrations: [tailwind()],
 	adapter: cloudflare({
 		platformProxy: {
 			enabled: true,
@@ -18,8 +17,8 @@ export default defineConfig({
 		ssr: {
 			external: ['node:path'],
 		},
-		build:{
-			minify: false
-		}
+		build: {
+			minify: false,
+		},
 	},
 })
