@@ -12,10 +12,14 @@ export default defineConfig({
 			enabled: true,
 		},
 		mode: 'directory',
+		wasmModuleImports: true,
 	}),
 	vite: {
 		ssr: {
 			external: ['node:path'],
 		},
+		build:{
+			minify: false
+		}
 	},
 })
