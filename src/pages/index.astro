@@ -584,15 +584,7 @@ import Layout from '../layouts/Layout.astro'
 	</div>
 </Layout>
 
-<script>
-	const { signIn, signOut } = await import('auth-astro/client')
 
-	const $login = document.querySelector('#login') as HTMLButtonElement
-	const $logout = document.querySelector('#logout') as HTMLButtonElement
-
-	if ($logout) $logout.onclick = () => signOut()
-	if ($login) $login.onclick = () => signIn('google')
-</script>
 
 <style>
 	main {
