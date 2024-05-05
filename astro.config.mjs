@@ -10,15 +10,10 @@ export default defineConfig({
 		platformProxy: {
 			enabled: true,
 		},
-		mode: 'directory',
-		wasmModuleImports: true,
 	}),
 	vite: {
-		ssr: {
-			external: ['node:path'],
-		},
-		build: {
-			minify: false,
+		optimizeDeps: {
+			exclude: ['astro:db'],
 		},
 	},
 })

@@ -3,10 +3,10 @@
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "astro dev --host",
+		"dev": "wrangler types && astro dev --host",
 		"start": "astro dev",
-		"build": "astro check && astro build",
-		"preview": "astro build && wrangler pages dev ./dist",
+		"build": "wrangler types && astro check && astro build --remote",
+		"preview": "wrangler types && astro preview",
 		"astro": "astro",
 		"deploy": "astro build && wrangler pages deploy",
 		"debug": "wrangler pages deployment tail --project-name eira",
